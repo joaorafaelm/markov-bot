@@ -9,6 +9,10 @@
     },
     "ADMIN_USERNAMES": {
       "description": "Telegram usernames separated by comma."
+    },
+    "SENTENCE_COMMAND": {
+      "description": "Command name to trigger sentence generation.",
+      "value": "sentence"
     }
   }
 }
