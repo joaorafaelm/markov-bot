@@ -12,7 +12,8 @@
     },
     "SENTENCE_COMMAND": {
       "description": "Command name to trigger sentence generation.",
-      "value": "sentence"
+      "value": "sentence",
+      "required": false
     }
   }
 }
