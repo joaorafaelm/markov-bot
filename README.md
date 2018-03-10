@@ -1,4 +1,5 @@
 # A telegram bot based on markov chain
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Generate pseudo random sentences using the markov chain model.
 **You will need Python3+ to use this project.**
