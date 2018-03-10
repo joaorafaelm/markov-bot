@@ -1,0 +1,5 @@
+/.idea
+venv/
+.DS_STORE
+*.swp
+.env
