@@ -1,0 +1,14 @@
+{
+  "name": "Markov bot",
+  "description": "Generate pseudo random sentences using the markov chain model",
+  "repository": "https://github.com/joaorafaelm/markov-bot",
+  "keywords": ["python"],
+  "env": {
+    "TELEGRAM_TOKEN": {
+      "description": "A telegram token generated to the bot."
+    },
+    "ADMIN_USERNAMES": {
+      "description": "Telegram usernames separated by comma."
+    }
+  }
+}
