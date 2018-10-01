@@ -69,10 +69,12 @@ def update_model(message):
         'text': '\n'.join([chat_messages.get('text', ''), message.text])
     }, ['chat_id'])
 
-    if message.entities != None:
+    try:
         if message.entities[0].type == 'mention':
             if f'@{bot.get_me().username}' in message.text:
                 generate_sentence(message)
+    except TypeError:
+        pass
 
     logger.info(f'saving message from {chat_id}')
 
