@@ -61,14 +61,11 @@ def remove_messages(message):
     bot.reply_to(message, 'u r not an admin 🤔')
 
 
-@bot.message_handler(commands=['getrepoversion'])
+@bot.message_handler(commands=['version'])
 def get_repo_version(message):
 	hash_len = 7
-	commit_string = '/commit/'
 	try:
-		r = requests.get('https://github.com/joaorafaelm/markov-bot')
-		commit_ind = r.text.index(commit_string)
-		bot.reply_to(message, r.text[commit_ind+len(commit_string):commit_ind+len(commit_string)+hash_len])
+		bot.reply_to(message, environ.get('HEROKU_SLUG_COMMIT')[:hash_len])
 		return	
 	except Exception as _:
 		bot.reply_to(message, 'Could not get repo version')
