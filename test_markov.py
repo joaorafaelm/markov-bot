@@ -11,7 +11,8 @@ def message():
         'chat': {'id': -1, 'title': 'test chat'},
         'from_user': {'username': 'joao'},
         'user': {'username': 'joao'},
-        'text': 'bla bla bla'
+        'text': 'bla bla bla',
+        'entities': [{'type': 'mention'}]
     })
 
 
@@ -20,7 +21,7 @@ def message():
 def test_messages(mock_db, mock_bot, message):
     mock_db.find_one.return_value = ''
     chat_id = str(message.chat.id)
-    markov.update_model(message)
+    markov.on_message(message)
     assert mock_db.find_one.called_once_with(chat_id=chat_id)
     assert mock_db.upsert.called_once_with({
         'chat_id': chat_id,

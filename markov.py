@@ -61,6 +61,16 @@ def remove_messages(message):
 
 
 @bot.message_handler(func=lambda m: True)
+def on_message(message):
+    update_model(message)
+    try:
+        if message.entities[0].type == 'mention':
+            if f'@{bot.get_me().username}' in message.text:
+                generate_sentence(message)
+    except TypeError:
+        pass
+
+
 def update_model(message):
     chat_id = str(message.chat.id)
     chat_messages = db.find_one(chat_id=chat_id) or {}
@@ -68,13 +78,6 @@ def update_model(message):
         'chat_id': chat_id,
         'text': '\n'.join([chat_messages.get('text', ''), message.text])
     }, ['chat_id'])
-
-    try:
-        if message.entities[0].type == 'mention':
-            if f'@{bot.get_me().username}' in message.text:
-                generate_sentence(message)
-    except TypeError:
-        pass
 
     logger.info(f'saving message from {chat_id}')
 
