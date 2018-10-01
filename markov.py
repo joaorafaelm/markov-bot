@@ -23,7 +23,7 @@ bot = telebot.TeleBot(TELEGRAM_TOKEN)
 def get_model(chat):
     logger.info(f'fetching messages for {chat.title}')
     messages = db['messages']
-    chat_messages = messages.find_one(chat_id=chat.id)
+    chat_messages = messages.find_one(chat_id=str(chat.id))
     if chat_messages:
         return markovify.text.NewlineText(chat_messages['text'])
 
@@ -46,7 +46,7 @@ def sentence(message):
 @bot.message_handler(commands=['remove'])
 def admin(message):
     username = message.from_user.username
-    chat_id = message.chat.id
+    chat_id = str(message.chat.id)
     username_admins = [
         u.user.username for u in bot.get_chat_administrators(chat_id)
     ]
@@ -64,9 +64,9 @@ def admin(message):
 @bot.message_handler(func=lambda m: True)
 def messages(message):
     messages = db['messages']
-    chat_messages = messages.find_one(chat_id=message.chat.id) or {}
+    chat_messages = messages.find_one(chat_id=str(message.chat.id)) or {}
     messages.upsert({
-        'chat_id': message.chat.id,
+        'chat_id': str(message.chat.id),
         'chat_title': message.chat.title,
         'text': '\n'.join([chat_messages.get('text', ''), message.text])
     }, ['chat_id'])
