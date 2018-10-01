@@ -47,10 +47,7 @@ def generate_sentence(message):
 def remove_messages(message):
     username = message.from_user.username
     chat_id = str(message.chat.id)
-    username_admins = [
-        u.user.username for u in bot.get_chat_administrators(chat_id)
-    ]
-    if username in username_admins + ADMIN_USERNAMES:
+    if username in ADMIN_USERNAMES:
         db.delete(chat_id=chat_id)
         get_model.cache_clear()
         bot.reply_to(message, 'messages deleted')
