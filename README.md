@@ -31,7 +31,4 @@ Add the bot to a group chat, disable the bot privacy settings (it means that the
 Run `/sentence` (*or the command you defined using the env var `SENTENCE_COMMAND`*) to generate random sentences.
 **You might need a reasonable amount of text before getting some sentences.** If you wish to delete the model, run `/remove`.
 
-#### Providing initial data
-If you already have some text, place it in the `data/` dir in a <name_of_the_chat_group>.txt file.
-
 Have fun :)
