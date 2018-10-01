@@ -4,6 +4,7 @@ from os import environ
 import dataset
 from cachetools.func import ttl_cache
 import logging
+import requests
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -58,6 +59,19 @@ def remove_messages(message):
         return
 
     bot.reply_to(message, 'u r not an admin 🤔')
+
+
+@bot.message_handler(commands=['getrepoversion'])
+def get_repo_version(message):
+	hash_len = 7
+	commit_string = '/commit/'
+	try:
+		r = requests.get('https://github.com/joaorafaelm/markov-bot')
+		commit_ind = r.text.index(commit_string)
+		bot.reply_to(message, r.text[commit_ind+len(commit_string):commit_ind+len(commit_string)+hash_len])
+		return	
+	except Exception as _:
+		bot.reply_to(message, 'Could not get repo version')
 
 
 @bot.message_handler(func=lambda m: True)
