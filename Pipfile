@@ -6,9 +6,12 @@ name = "pypi"
 [packages]
 pyTelegramBotAPI = "*"
 markovify = "*"
+dataset = "*"
+cachetools = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 ipdb = "*"
 
 [requires]
-python_full_version = "3.6.4"
+python_full_version = "3.7.0"
