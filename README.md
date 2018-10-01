@@ -1,6 +1,11 @@
 # A telegram bot based on markov chain
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/joaorafaelm/markov-bot)
 
+[![Build Status](https://travis-ci.org/joaorafaelm/markov-bot.svg?branch=master)](https://travis-ci.org/joaorafaelm/markov-bot)
+[![Updates](https://pyup.io/repos/github/joaorafaelm/markov-bot/shield.svg)](https://pyup.io/repos/github/joaorafaelm/markov-bot/)
+[![Python 3](https://pyup.io/repos/github/joaorafaelm/markov-bot/python-3-shield.svg)](https://pyup.io/repos/github/joaorafaelm/markov-bot/)
+
+
 Generate pseudo random sentences using the markov chain model.
 **You will need Python3+ to use this project.**
 
