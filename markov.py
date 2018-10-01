@@ -1,79 +1,78 @@
 import telebot
 import markovify
 from os import environ
-from os.path import isfile
-import pickle
+import dataset
+from cachetools.func import ttl_cache
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-models = pickle.load(
-    open('models.pkl', 'rb')
-) if isfile('models.pkl') else {}
+TELEGRAM_TOKEN = environ.get('TELEGRAM_TOKEN')
+ADMIN_USERNAMES = environ.get('ADMIN_USERNAMES', default='').split(',')
+SENTENCE_COMMAND = environ.get('SENTENCE_COMMAND', default='sentence')
+DATABASE_URL = environ.get('DATABASE_URL', default='sqlite:///:memory:')
+MODEL_CACHE_TTL = int(environ.get('MODEL_CACHE_TTL', default='300'))
+
+db = dataset.connect(DATABASE_URL)
+bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
 
-telegram_token = environ.get('TELEGRAM_TOKEN')
-admin_usernames = environ.get('ADMIN_USERNAMES', '').split(',')
-sentence_command = environ.get('SENTENCE_COMMAND', 'sentence')
-bot = telebot.TeleBot(telegram_token)
-
-print('Token: {}'.format(telegram_token))
-print('Admins: {}'.format(admin_usernames))
-
-
-def update_model(chat_name):
-    text_file = 'data/{}.txt'.format(chat_name)
-    if isfile(text_file):
-        models[chat_name] = markovify.text.NewlineText(
-            open(text_file).read()
-        )
-        pickle.dump(models, open('models.pkl', 'wb'))
+@ttl_cache(ttl=MODEL_CACHE_TTL)
+def get_model(chat):
+    logger.info(f'fetching messages for {chat.title}')
+    messages = db['messages']
+    chat_messages = messages.find_one(chat_id=chat.id)
+    if chat_messages:
+        return markovify.text.NewlineText(chat_messages['text'])
 
 
-@bot.message_handler(commands=[sentence_command])
+@bot.message_handler(commands=[SENTENCE_COMMAND])
 def sentence(message):
-    chat_title = message.chat.title
-    chat_model = models.get(chat_title)
-    if chat_model and chat_title in models:
-        generated_message = chat_model.make_sentence(
-            max_overlap_ratio=0.7,
-            tries=50
-        )
+    chat_model = get_model(message.chat)
+    generated_message = chat_model.make_sentence(
+        max_overlap_ratio=0.7,
+        tries=50
+    ) if chat_model else None
 
-        bot.send_message(
-            message.chat.id,
-            generated_message or 'i need more data'
-        )
-        return
-
-    bot.reply_to(message, 'enable the chat first')
+    logger.info(f'generating message for {message.chat.title}')
+    bot.send_message(
+        message.chat.id,
+        generated_message or 'i need more data'
+    )
 
 
-@bot.message_handler(commands=['enable', 'remove'])
+@bot.message_handler(commands=['remove'])
 def admin(message):
     username = message.from_user.username
-    chat_title = message.chat.title
+    chat_id = message.chat.id
+    username_admins = [
+        u.user.username for u in bot.get_chat_administrators(chat_id)
+    ]
 
-    if username not in admin_usernames:
-        bot.reply_to(message, 'u r not an admin 🤔')
+    if username in username_admins + ADMIN_USERNAMES:
+        db['messages'].delete(chat_id=chat_id)
+        get_model.cache_clear()
+        bot.reply_to(message, 'messages deleted')
+        logger.info(f'removing messages from {message.chat.title}')
         return
 
-    if 'remove' in message.text and chat_title in models:
-        models.pop(chat_title)
-    elif 'enable' in message.text:
-        models[chat_title] = None
-        update_model(chat_title)
-
-    bot.reply_to(message, 'chat config updated')
-    pickle.dump(models, open('models.pkl', 'wb'))
+    bot.reply_to(message, 'u r not an admin 🤔')
 
 
 @bot.message_handler(func=lambda m: True)
 def messages(message):
-    chat_title = message.chat.title
-    text_file = 'data/{}.txt'.format(chat_title)
-    if chat_title in models:
-        with open(text_file, 'a+') as f:
-            f.write(message.text + '\n')
-        update_model(chat_title)
+    messages = db['messages']
+    chat_messages = messages.find_one(chat_id=message.chat.id) or {}
+    messages.upsert({
+        'chat_id': message.chat.id,
+        'chat_title': message.chat.title,
+        'text': '\n'.join([chat_messages.get('text', ''), message.text])
+    }, ['chat_id'])
+
+    logger.info(f'saving message from {message.chat.title}')
 
 
-bot.polling(none_stop=True)
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
