@@ -29,7 +29,7 @@ def get_model(chat):
 
 
 @bot.message_handler(commands=[SENTENCE_COMMAND])
-def sentence(message):
+def generate_sentence(message):
     chat_model = get_model(message.chat)
     generated_message = chat_model.make_sentence(
         max_overlap_ratio=0.7,
