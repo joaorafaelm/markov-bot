@@ -40,7 +40,7 @@ def test_get_model(mock_db, message):
 @mock.patch('markov.bot')
 @mock.patch('markov.get_model')
 def test_generate_sentence(mock_model, mock_bot, message):
-    markov.sentence(message)
+    markov.generate_sentence(message)
     assert mock_model.called_once_with(message.chat)
     assert mock_bot.send_message.called is True
 
