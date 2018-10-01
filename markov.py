@@ -63,12 +63,9 @@ def remove_messages(message):
 
 @bot.message_handler(commands=['version'])
 def get_repo_version(message):
-	hash_len = 7
-	try:
-		bot.reply_to(message, environ.get('HEROKU_SLUG_COMMIT')[:hash_len])
-		return	
-	except Exception as _:
-		bot.reply_to(message, 'Could not get repo version')
+    hash_len = 7
+    commit_hash = environ.get('HEROKU_SLUG_COMMIT')[:hash_len]
+    bot.reply_to(message, commit_hash)
 
 
 @bot.message_handler(func=lambda m: True)
