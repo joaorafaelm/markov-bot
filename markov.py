@@ -21,9 +21,10 @@ bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
 @ttl_cache(ttl=MODEL_CACHE_TTL)
 def get_model(chat):
-    logger.info(f'fetching messages for {chat.title}')
+    logger.info(f'fetching messages for {chat.id}')
     messages = db['messages']
-    chat_messages = messages.find_one(chat_id=str(chat.id))
+    chat_id = str(chat.id)
+    chat_messages = messages.find_one(chat_id=chat_id)
     if chat_messages:
         return markovify.text.NewlineText(chat_messages['text'])
 
@@ -36,7 +37,7 @@ def sentence(message):
         tries=50
     ) if chat_model else None
 
-    logger.info(f'generating message for {message.chat.title}')
+    logger.info(f'generating message for {message.chat.id}')
     bot.send_message(
         message.chat.id,
         generated_message or 'i need more data'
@@ -55,7 +56,7 @@ def admin(message):
         db['messages'].delete(chat_id=chat_id)
         get_model.cache_clear()
         bot.reply_to(message, 'messages deleted')
-        logger.info(f'removing messages from {message.chat.title}')
+        logger.info(f'removing messages from {chat_id}')
         return
 
     bot.reply_to(message, 'u r not an admin 🤔')
@@ -64,15 +65,16 @@ def admin(message):
 @bot.message_handler(func=lambda m: True)
 def messages(message):
     messages = db['messages']
-    chat_messages = messages.find_one(chat_id=str(message.chat.id)) or {}
+    chat_id = str(message.chat.id)
+    chat_messages = messages.find_one(chat_id=chat_id) or {}
     messages.upsert({
-        'chat_id': str(message.chat.id),
-        'chat_title': message.chat.title,
+        'chat_id': chat_id,
         'text': '\n'.join([chat_messages.get('text', ''), message.text])
     }, ['chat_id'])
 
-    logger.info(f'saving message from {message.chat.title}')
+    logger.info(f'saving message from {chat_id}')
 
 
 if __name__ == '__main__':
+    logger.info(f'starting the bot')
     bot.polling(none_stop=True)
