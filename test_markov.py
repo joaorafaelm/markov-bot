@@ -48,10 +48,10 @@ def test_generate_sentence(mock_model, mock_bot, message):
 @mock.patch('markov.get_model')
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
-def test_admin(mock_db, mock_bot, mock_model, message):
+def test_remove_messages(mock_db, mock_bot, mock_model, message):
     mock_bot.get_chat_administrators.return_value = [message]
     chat_id = str(message.chat.id)
-    markov.admin(message)
+    markov.remove_messages(message)
     assert mock_db.delete.called_once_with(chat_id=chat_id)
     assert mock_model.cache_clear.called
     assert mock_bot.reply_to.called

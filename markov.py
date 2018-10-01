@@ -44,7 +44,7 @@ def generate_sentence(message):
 
 
 @bot.message_handler(commands=['remove'])
-def admin(message):
+def remove_messages(message):
     username = message.from_user.username
     chat_id = str(message.chat.id)
     username_admins = [
