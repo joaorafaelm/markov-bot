@@ -15,16 +15,15 @@ SENTENCE_COMMAND = environ.get('SENTENCE_COMMAND', default='sentence')
 DATABASE_URL = environ.get('DATABASE_URL', default='sqlite:///:memory:')
 MODEL_CACHE_TTL = int(environ.get('MODEL_CACHE_TTL', default='300'))
 
-db = dataset.connect(DATABASE_URL)
+db = dataset.connect(DATABASE_URL)['messages']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
 
 @ttl_cache(ttl=MODEL_CACHE_TTL)
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
-    messages = db['messages']
     chat_id = str(chat.id)
-    chat_messages = messages.find_one(chat_id=chat_id)
+    chat_messages = db.find_one(chat_id=chat_id)
     if chat_messages:
         return markovify.text.NewlineText(chat_messages['text'])
 
@@ -51,9 +50,8 @@ def admin(message):
     username_admins = [
         u.user.username for u in bot.get_chat_administrators(chat_id)
     ]
-
     if username in username_admins + ADMIN_USERNAMES:
-        db['messages'].delete(chat_id=chat_id)
+        db.delete(chat_id=chat_id)
         get_model.cache_clear()
         bot.reply_to(message, 'messages deleted')
         logger.info(f'removing messages from {chat_id}')
@@ -63,11 +61,10 @@ def admin(message):
 
 
 @bot.message_handler(func=lambda m: True)
-def messages(message):
-    messages = db['messages']
+def update_model(message):
     chat_id = str(message.chat.id)
-    chat_messages = messages.find_one(chat_id=chat_id) or {}
-    messages.upsert({
+    chat_messages = db.find_one(chat_id=chat_id) or {}
+    db.upsert({
         'chat_id': chat_id,
         'text': '\n'.join([chat_messages.get('text', ''), message.text])
     }, ['chat_id'])

@@ -12,6 +12,8 @@ psycopg2-binary = "*"
 
 [dev-packages]
 ipdb = "*"
+pytest = "*"
+attrdict = "*"
 
 [requires]
 python_full_version = "3.7.0"
