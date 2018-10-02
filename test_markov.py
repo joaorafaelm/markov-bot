@@ -56,3 +56,9 @@ def test_remove_messages(mock_db, mock_bot, mock_model, message):
     assert mock_db.delete.called_once_with(chat_id=chat_id)
     assert mock_model.cache_clear.called
     assert mock_bot.reply_to.called
+
+
+@mock.patch('markov.bot')
+def test_get_repo_version(mock_bot, message):
+    markov.get_repo_version(message)
+    assert mock_bot.reply_to.mock_model.called_once_with(message)
