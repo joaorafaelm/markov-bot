@@ -57,6 +57,15 @@ def remove_messages(message):
     bot.reply_to(message, 'u r not an admin 🤔')
 
 
+@bot.message_handler(commands=['version'])
+def get_repo_version(message):
+    hash_len = 7
+    commit_hash = environ.get('HEROKU_SLUG_COMMIT', '')
+    if len(commit_hash) > 0:
+        commit_hash = commit_hash[:hash_len]
+    bot.reply_to(message, commit_hash)
+
+
 @bot.message_handler(func=lambda m: True)
 def update_model(message):
     chat_id = str(message.chat.id)
