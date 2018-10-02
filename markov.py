@@ -62,7 +62,6 @@ def remove_messages(message):
 
 @bot.message_handler(func=lambda m: True)
 def on_message(message):
-    print(message)
     update_model(message)
     entities = [u.type for u in message.entities or []]
     if 'mention' in entities:
