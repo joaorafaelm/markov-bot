@@ -28,6 +28,7 @@ def test_updating_model(mock_db, mock_bot, message):
         'text': f'\n{message.text}'
     }, ['chat_id'])
 
+
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
 def test_messages(mock_db, mock_bot, message):
