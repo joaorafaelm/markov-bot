@@ -18,15 +18,20 @@ def message():
 
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
-def test_messages(mock_db, mock_bot, message):
+def test_updating_model(mock_db, mock_bot, message):
     mock_db.find_one.return_value = ''
     chat_id = str(message.chat.id)
-    markov.on_message(message)
+    markov.update_model(message)
     assert mock_db.find_one.called_once_with(chat_id=chat_id)
     assert mock_db.upsert.called_once_with({
         'chat_id': chat_id,
         'text': f'\n{message.text}'
     }, ['chat_id'])
+
+@mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_messages(mock_db, mock_bot, message):
+    assert mock_bot.send_message.called is False
 
 
 @mock.patch('markov.db')
@@ -56,9 +61,3 @@ def test_remove_messages(mock_db, mock_bot, mock_model, message):
     assert mock_db.delete.called_once_with(chat_id=chat_id)
     assert mock_model.cache_clear.called
     assert mock_bot.reply_to.called
-
-
-@mock.patch('markov.bot')
-def test_get_repo_version(mock_bot, message):
-    markov.get_repo_version(message)
-    assert mock_bot.reply_to.mock_model.called_once_with(message)
