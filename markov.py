@@ -65,9 +65,8 @@ def on_message(message):
     update_model(message)
     entities = [u.type for u in message.entities or []]
     if 'mention' in entities:
-        if message.entities[0].type == 'mention':
-            if f'@{bot.get_me().username}' in message.text:
-                generate_sentence(message)
+        if f'@{bot.get_me().username}' in message.text:
+            generate_sentence(message)
 
 def update_model(message):
     chat_id = str(message.chat.id)
