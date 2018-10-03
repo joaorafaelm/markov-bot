@@ -19,6 +19,15 @@ db = dataset.connect(DATABASE_URL)['messages']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
 
+def is_from_admin(message):
+    username = message.from_user.username
+    chat_id = str(message.chat.id)
+    username_admins = [
+        u.user.username for u in bot.get_chat_administrators(chat_id)
+    ]
+    return (username in username_admins + ADMIN_USERNAMES)
+
+
 @ttl_cache(ttl=MODEL_CACHE_TTL)
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
@@ -45,12 +54,8 @@ def generate_sentence(message):
 
 @bot.message_handler(commands=['remove'])
 def remove_messages(message):
-    username = message.from_user.username
-    chat_id = str(message.chat.id)
-    username_admins = [
-        u.user.username for u in bot.get_chat_administrators(chat_id)
-    ]
-    if username in username_admins + ADMIN_USERNAMES:
+    if is_from_admin(message):
+        chat_id = str(message.chat.id)
         db.delete(chat_id=chat_id)
         get_model.cache_clear()
         bot.reply_to(message, 'messages deleted')
@@ -67,6 +72,16 @@ def get_repo_version(message):
     if len(commit_hash) > 0:
         commit_hash = commit_hash[:hash_len]
     bot.reply_to(message, commit_hash)
+
+
+@bot.message_handler(commands=['flush'])
+def flush_cache(message):
+    if is_from_admin(message):
+        get_model.cache_clear()
+        bot.reply_to(message, 'cache cleared')
+        logger.info('cache cleared')
+        return
+    bot.reply_to(message, 'u r not an admin 🤔')
 
 
 @bot.message_handler(func=lambda m: True)
