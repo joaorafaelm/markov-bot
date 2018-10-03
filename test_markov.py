@@ -57,6 +57,15 @@ def test_remove_messages(mock_db, mock_bot, mock_model, message):
     assert mock_bot.reply_to.called
 
 
+@mock.patch('markov.get_model')
+@mock.patch('markov.bot')
+def test_flush_cache(mock_bot, mock_model, message):
+    mock_bot.get_chat_administrators.return_value = [message]
+    markov.flush_cache(message)
+    assert mock_model.cache_clear.called
+    assert mock_bot.reply_to.called
+
+
 @mock.patch('markov.bot')
 def test_get_repo_version(mock_bot, message):
     markov.get_repo_version(message)
