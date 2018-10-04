@@ -34,7 +34,7 @@ def get_model(chat):
     chat_id = str(chat.id)
     chat_messages = db.find(chat_id=chat_id, _limit=5000)
     if chat_messages:
-return markovify.text.NewlineText(random.choice(chat_messages)['text'])
+        return markovify.text.NewlineText(random.choice(chat_messages)['text'])
 
 
 @bot.message_handler(commands=[SENTENCE_COMMAND])
