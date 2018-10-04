@@ -4,6 +4,7 @@ from os import environ
 import dataset
 from cachetools.func import ttl_cache
 import logging
+import random
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
