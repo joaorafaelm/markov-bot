@@ -32,9 +32,9 @@ def is_from_admin(message):
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
     chat_id = str(chat.id)
-    chat_messages = db.find_one(chat_id=chat_id)
+    chat_messages = db.find(chat_id=chat_id, _limit=5000)
     if chat_messages:
-        return markovify.text.NewlineText(chat_messages['text'])
+return markovify.text.NewlineText(random.choice(chat_messages)['text'])
 
 
 @bot.message_handler(commands=[SENTENCE_COMMAND])
