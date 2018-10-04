@@ -15,7 +15,7 @@ ADMIN_USERNAMES = environ.get('ADMIN_USERNAMES', default='').split(',')
 SENTENCE_COMMAND = environ.get('SENTENCE_COMMAND', default='sentence')
 DATABASE_URL = environ.get('DATABASE_URL', default='sqlite:///:memory:')
 MODEL_CACHE_TTL = int(environ.get('MODEL_CACHE_TTL', default='300'))
-MESSAGE_HISTORY_LIMIT = int(environ.get('MESSAGE_HISTORY_LIMIT', default='5000'))
+MSG_HISTORY_LIMIT = int(environ.get('MSG_HISTORY_LIMIT', default='5000'))
 
 db = dataset.connect(DATABASE_URL)['messages']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
@@ -34,7 +34,7 @@ def is_from_admin(message):
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
     chat_id = str(chat.id)
-    chat_messages = db.find(chat_id=chat_id, _limit=MESSAGE_HISTORY_LIMIT)
+    chat_messages = db.find(chat_id=chat_id, _limit=MSG_HISTORY_LIMIT)
     if chat_messages:
         return markovify.text.NewlineText(random.choice(chat_messages)['text'])
 
