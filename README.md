@@ -20,7 +20,7 @@ $ cd markov-bot
 $ pipenv install --dev
 ```
 ### 3. Env vars
-In order to run the bot, you need to define the env vars `TELEGRAM_TOKEN` and `ADMIN_USERNAMES`*:
+In order to run the bot, you need to define the env vars `TELEGRAM_TOKEN` (to generate a bot token follow [these instructions](https://core.telegram.org/bots#creating-a-new-bot)) and `ADMIN_USERNAMES`*:
 ```bash
 $ cp local.env .env
 $ vim .env
