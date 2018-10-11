@@ -88,6 +88,12 @@ def flush_cache(message):
 
 
 @bot.message_handler(func=lambda m: True)
+def handle_message(message):
+    update_model(message)
+    if bot.get_me().username in message.text:
+        generate_sentence(message)
+
+
 def update_model(message):
     chat_id = str(message.chat.id)
     chat_messages = db.find_one(chat_id=chat_id) or {}

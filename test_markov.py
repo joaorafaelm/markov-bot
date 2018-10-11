@@ -15,9 +15,45 @@ def message():
     })
 
 
+@mock.patch('markov.generate_sentence')
+@mock.patch('markov.update_model')
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
-def test_messages(mock_db, mock_bot, message):
+def test_handle_message(
+    mock_db, mock_bot, mock_update_model,
+    mock_generate_sentence, message
+):
+    mock_get_me = mock.Mock()
+    mock_get_me.return_value.username = 'markov_bot'
+    mock_bot.get_me = mock_get_me
+
+    markov.handle_message(message)
+    assert mock_update_model.called
+    assert not mock_generate_sentence.called
+
+
+@mock.patch('markov.generate_sentence')
+@mock.patch('markov.update_model')
+@mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_handle_message_with_mention(
+    mock_db, mock_bot, mock_update_model,
+    mock_generate_sentence, message
+):
+    message.text = 'hello, markov_bot!'
+
+    mock_get_me = mock.Mock()
+    mock_get_me.return_value.username = 'markov_bot'
+    mock_bot.get_me = mock_get_me
+
+    markov.handle_message(message)
+    assert mock_update_model.called
+    assert mock_generate_sentence.called
+
+
+@mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_update_model(mock_db, mock_bot, message):
     mock_db.find_one.return_value = ''
     chat_id = str(message.chat.id)
     markov.update_model(message)
