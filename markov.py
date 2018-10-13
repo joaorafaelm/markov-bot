@@ -1,6 +1,6 @@
 import telebot
 import markovify
-from os import environ
+from decouple import config, Csv
 import dataset
 from cachetools.func import ttl_cache
 import logging
@@ -9,12 +9,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-TELEGRAM_TOKEN = environ.get('TELEGRAM_TOKEN')
-ADMIN_USERNAMES = environ.get('ADMIN_USERNAMES', default='').split(',')
-SENTENCE_COMMAND = environ.get('SENTENCE_COMMAND', default='sentence')
-DATABASE_URL = environ.get('DATABASE_URL', default='sqlite:///:memory:')
-MODEL_CACHE_TTL = int(environ.get('MODEL_CACHE_TTL', default='300'))
-MESSAGE_LIMIT = environ.get('MESSAGE_LIMIT', default=5000)
+TELEGRAM_TOKEN = config('TELEGRAM_TOKEN')
+ADMIN_USERNAMES = config('ADMIN_USERNAMES', default='', cast=Csv())
+SENTENCE_COMMAND = config('SENTENCE_COMMAND', default='sentence')
+DATABASE_URL = config('DATABASE_URL', default='sqlite:///:memory:')
+MODEL_CACHE_TTL = config('MODEL_CACHE_TTL', default='300', cast=int)
+COMMIT_HASH = config('HEROKU_SLUG_COMMIT', default='not set')
+MESSAGE_LIMIT = config('MESSAGE_LIMIT', default='5000', cast=int)
 
 db = dataset.connect(DATABASE_URL)['messages']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
@@ -36,7 +37,7 @@ def get_model(chat):
     chat_messages = db.find_one(chat_id=chat_id)
     if chat_messages:
         text = chat_messages['text']
-        text_limited = "\n".join(text.splitlines()[0:MESSAGE_LIMIT])
+        text_limited = '\n'.join(text.splitlines()[-MESSAGE_LIMIT:])
         return markovify.text.NewlineText(text_limited)
 
 
@@ -71,9 +72,7 @@ def remove_messages(message):
 @bot.message_handler(commands=['version'])
 def get_repo_version(message):
     hash_len = 7
-    commit_hash = environ.get('HEROKU_SLUG_COMMIT', '')
-    if len(commit_hash) > 0:
-        commit_hash = commit_hash[:hash_len]
+    commit_hash = COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
 
 
