@@ -1,24 +1,15 @@
 import telebot
 import markovify
-from decouple import config, Csv
 import dataset
 from cachetools.func import ttl_cache
 import logging
+from settings import settings
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-TELEGRAM_TOKEN = config('TELEGRAM_TOKEN', default='')
-ADMIN_USERNAMES = config('ADMIN_USERNAMES', default='', cast=Csv())
-SENTENCE_COMMAND = config('SENTENCE_COMMAND', default='sentence')
-DATABASE_URL = config('DATABASE_URL', default='sqlite:///:memory:')
-MODEL_CACHE_TTL = config('MODEL_CACHE_TTL', default='300', cast=int)
-COMMIT_HASH = config('HEROKU_SLUG_COMMIT', default='not set')
-MESSAGE_LIMIT = config('MESSAGE_LIMIT', default='5000', cast=int)
-
-db = dataset.connect(DATABASE_URL)['messages']
-bot = telebot.TeleBot(TELEGRAM_TOKEN)
+db = dataset.connect(settings.DATABASE_URL)['messages']
+bot = telebot.TeleBot(settings.TELEGRAM_TOKEN)
 
 
 def is_from_admin(message):
@@ -27,21 +18,21 @@ def is_from_admin(message):
     username_admins = [
         u.user.username for u in bot.get_chat_administrators(chat_id)
     ]
-    return (username in username_admins + ADMIN_USERNAMES)
+    return (username in username_admins + settings.ADMIN_USERNAMES)
 
 
-@ttl_cache(ttl=MODEL_CACHE_TTL)
+@ttl_cache(ttl=settings.MODEL_CACHE_TTL)
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
     chat_id = str(chat.id)
     chat_messages = db.find_one(chat_id=chat_id)
     if chat_messages:
         text = chat_messages['text']
-        text_limited = '\n'.join(text.splitlines()[-MESSAGE_LIMIT:])
-        return markovify.text.NewlineText(text_limited)
+        text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
+        return markovify.text.NewlineText(text_limited, retain_original=False)
 
 
-@bot.message_handler(commands=[SENTENCE_COMMAND])
+@bot.message_handler(commands=[settings.SENTENCE_COMMAND])
 def generate_sentence(message):
     chat_model = get_model(message.chat)
     generated_message = chat_model.make_sentence(
@@ -72,7 +63,7 @@ def remove_messages(message):
 @bot.message_handler(commands=['version'])
 def get_repo_version(message):
     hash_len = 7
-    commit_hash = COMMIT_HASH[:hash_len]
+    commit_hash = settings.COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
 
 
