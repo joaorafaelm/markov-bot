@@ -5,7 +5,7 @@ from cachetools.func import ttl_cache
 import logging
 from settings import settings
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
 db = dataset.connect(settings.DATABASE_URL)['messages']
