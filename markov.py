@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-TELEGRAM_TOKEN = config('TELEGRAM_TOKEN')
+TELEGRAM_TOKEN = config('TELEGRAM_TOKEN', default='')
 ADMIN_USERNAMES = config('ADMIN_USERNAMES', default='', cast=Csv())
 SENTENCE_COMMAND = config('SENTENCE_COMMAND', default='sentence')
 DATABASE_URL = config('DATABASE_URL', default='sqlite:///:memory:')
