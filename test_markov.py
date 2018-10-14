@@ -88,7 +88,26 @@ def test_generate_sentence(mock_model, mock_bot, message):
 @mock.patch('markov.get_model')
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
-def test_remove_messages(mock_db, mock_bot, mock_model, message):
+@mock.patch('markov.telebot.types.ReplyKeyboardMarkup')
+def test_remove_messages_ask_confirm(
+    mock_markup, mock_db, mock_bot, mock_model, message
+):
+    message.text = '/remove'
+    mock_bot.get_chat_administrators.return_value = [message]
+    markov.remove_messages(message)
+    assert mock_markup.add.called_once_with('yes', 'no')
+    assert mock_bot.reply_to.called_once_with(
+        message,
+        'this operation will delete all data, are you sure?',
+        reply_markup=mock_markup
+    )
+    assert mock_bot.register_next_step_handler.called is True
+
+
+@mock.patch('markov.get_model')
+@mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_remove_messages_confirm(mock_db, mock_bot, mock_model, message):
     message.text = 'yes'
     mock_bot.get_chat_administrators.return_value = [message]
     chat_id = str(message.chat.id)
@@ -101,7 +120,19 @@ def test_remove_messages(mock_db, mock_bot, mock_model, message):
 @mock.patch('markov.get_model')
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
-def test_remove_messages_invalid(mock_db, mock_bot, mock_model, message):
+def test_remove_messages_cancel(mock_db, mock_bot, mock_model, message):
+    message.text = 'no'
+    mock_bot.get_chat_administrators.return_value = [message]
+    markov.remove_messages(message)
+    assert mock_db.delete.called is False
+    assert mock_model.cache_clear.called is False
+    assert mock_bot.reply_to.called_once_with(message, 'aborting then')
+
+
+@mock.patch('markov.get_model')
+@mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_remove_messages_no_permission(mock_db, mock_bot, mock_model, message):
     mock_bot.get_chat_administrators.return_value = []
     markov.remove_messages(message)
     assert mock_db.delete.called is False
