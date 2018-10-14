@@ -8,7 +8,9 @@ from settings import settings
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
-db = dataset.connect(settings.DATABASE_URL)['messages']
+db = dataset.connect(
+    settings.DATABASE_URL
+)[settings.MESSAGES_TABLE_NAME]
 bot = telebot.TeleBot(settings.TELEGRAM_TOKEN)
 
 

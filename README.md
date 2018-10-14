@@ -38,7 +38,7 @@ $ make test
 ```
 #### 4. Run the bot
 ```bash
-$ pipenv run python markov.py
+$ make run
 ```
 #### 5. Permissions
 Disable the bot privacy settings (it means that the bot will receive all messages, not just the ones starting with "/") and run the command `/enable` to start collecting text.
