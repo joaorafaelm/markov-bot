@@ -67,26 +67,11 @@ def generate_sentence(message, reply=False):
 @bot.message_handler(commands=['remove'])
 @admin_required
 def remove_messages(message):
-    if message.text.startswith('/remove'):
-        markup = telebot.types.ReplyKeyboardMarkup(
-            row_width=1, one_time_keyboard=True
-        )
-        markup.add('yes', 'no')
-        reply = bot.reply_to(
-            message, 'this operation will delete all data, are you sure?',
-            reply_markup=markup
-        )
-        bot.register_next_step_handler(reply, remove_messages)
-
-    elif message.text == 'yes':
-        chat_id = str(message.chat.id)
-        db.delete(chat_id=chat_id)
-        get_model.cache_clear()
-        bot.reply_to(message, 'messages deleted')
-        logger.info(f'removing messages from {chat_id}')
-
-    elif message.text == 'no':
-        bot.reply_to(message, 'aborting then')
+    chat_id = str(message.chat.id)
+    db.delete(chat_id=chat_id)
+    get_model.cache_clear()
+    bot.reply_to(message, 'messages deleted')
+    logger.info(f'removing messages from {chat_id}')
 
 
 @bot.message_handler(commands=['version'])
