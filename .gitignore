@@ -4,3 +4,4 @@ venv/
 *.swp
 .env
 .coverage
+__pycache__
