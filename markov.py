@@ -33,17 +33,22 @@ def get_model(chat):
 
 
 @bot.message_handler(commands=[settings.SENTENCE_COMMAND])
-def generate_sentence(message):
+def generate_sentence(message, reply=False):
     chat_model = get_model(message.chat)
-    generated_message = chat_model.make_sentence(
+    generated_message = (chat_model.make_sentence(
         max_overlap_ratio=0.7,
         tries=50
-    ) if chat_model else None
+    ) if chat_model else None) or 'i need more data'
 
     logger.info(f'generating message for {message.chat.id}')
+
+    if reply:
+        bot.reply_to(message, generated_message)
+        return
+
     bot.send_message(
         message.chat.id,
-        generated_message or 'i need more data'
+        generated_message
     )
 
 
@@ -80,8 +85,8 @@ def flush_cache(message):
 @bot.message_handler(func=lambda m: True)
 def handle_message(message):
     update_model(message)
-    if bot.get_me().username in message.text:
-        generate_sentence(message)
+    if f'@{bot.get_me().username}' in message.text:
+        generate_sentence(message, reply=True)
 
 
 def update_model(message):
