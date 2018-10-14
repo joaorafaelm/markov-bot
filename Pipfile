@@ -10,6 +10,8 @@ dataset = "*"
 cachetools = "*"
 psycopg2-binary = "*"
 python-decouple = "*"
+pytest-cov = "*"
+codecov = "*"
 
 [dev-packages]
 ipdb = "*"
