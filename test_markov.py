@@ -40,7 +40,7 @@ def test_handle_message_with_mention(
     mock_db, mock_bot, mock_update_model,
     mock_generate_sentence, message
 ):
-    message.text = 'hello, markov_bot!'
+    message.text = 'hello, @markov_bot!'
 
     mock_get_me = mock.Mock()
     mock_get_me.return_value.username = 'markov_bot'
@@ -48,7 +48,7 @@ def test_handle_message_with_mention(
 
     markov.handle_message(message)
     assert mock_update_model.called
-    assert mock_generate_sentence.called
+    assert mock_generate_sentence.called_once_with(message, reply=True)
 
 
 @mock.patch('markov.bot')
