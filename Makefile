@@ -1,2 +1,2 @@
 test:
-	pipenv run pytest -x -p no:warnings
+	pipenv run pytest -v -x -p no:warnings --cov=./
