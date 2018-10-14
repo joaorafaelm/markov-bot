@@ -30,9 +30,11 @@ In order to run the bot, you need to define the env var `TELEGRAM_TOKEN` (to gen
 $ cp local.env .env
 $ vim .env
 ```
-
-#### 4. Run
-After defining the variables, run:
+#### 4. Run tests
+```bash
+$ make test
+```
+#### 4. Run the bot
 ```bash
 $ pipenv run python markov.py
 ```
