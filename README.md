@@ -6,6 +6,8 @@
   <a href="https://travis-ci.org/joaorafaelm/markov-bot"><img src="https://travis-ci.org/joaorafaelm/markov-bot.svg?branch=master"></a>
   <a href="https://pyup.io/repos/github/joaorafaelm/markov-bot/"><img src="https://pyup.io/repos/github/joaorafaelm/markov-bot/shield.svg"></a>
   <a href="https://pyup.io/repos/github/joaorafaelm/markov-bot/"><img src="https://pyup.io/repos/github/joaorafaelm/markov-bot/python-3-shield.svg"></a>
+  <a href="https://codecov.io/gh/joaorafaelm/markov-bot"><img src="https://codecov.io/gh/joaorafaelm/markov-bot/branch/master/graph/badge.svg" />
+  </a>
   <hr/>
 </p>
 
