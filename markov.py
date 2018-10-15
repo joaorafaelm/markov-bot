@@ -1,97 +1,100 @@
 import telebot
 import markovify
-from os import environ
 import dataset
 from cachetools.func import ttl_cache
 import logging
+from settings import settings
+import functools
 
-logging.basicConfig(level=logging.INFO)
+
+logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
-
-TELEGRAM_TOKEN = environ.get('TELEGRAM_TOKEN')
-ADMIN_USERNAMES = environ.get('ADMIN_USERNAMES', default='').split(',')
-SENTENCE_COMMAND = environ.get('SENTENCE_COMMAND', default='sentence')
-DATABASE_URL = environ.get('DATABASE_URL', default='sqlite:///:memory:')
-MODEL_CACHE_TTL = int(environ.get('MODEL_CACHE_TTL', default='300'))
-MESSAGE_LIMIT = environ.get('MESSAGE_LIMIT', default=5000)
-
-db = dataset.connect(DATABASE_URL)['messages']
-bot = telebot.TeleBot(TELEGRAM_TOKEN)
+db = dataset.connect(
+    settings.DATABASE_URL
+)[settings.MESSAGES_TABLE_NAME]
+bot = telebot.TeleBot(settings.TELEGRAM_TOKEN)
 
 
-def is_from_admin(message):
-    username = message.from_user.username
-    chat_id = str(message.chat.id)
-    username_admins = [
-        u.user.username for u in bot.get_chat_administrators(chat_id)
-    ]
-    return (username in username_admins + ADMIN_USERNAMES)
+def admin_required(func):
+    @functools.wraps(func)
+    def wrapper_admin_required(message, *args, **kwargs):
+        username = message.from_user.username
+        chat_id = str(message.chat.id)
+        username_admins = []
+        if message.chat.type != 'private':
+            username_admins = [
+                u.user.username for u in bot.get_chat_administrators(chat_id)
+            ]
+        if username in username_admins + settings.ADMIN_USERNAMES:
+            return func(message, *args, **kwargs)
+        else:
+            bot.reply_to(message, 'u r not an admin 🤔')
+    return wrapper_admin_required
 
 
-@ttl_cache(ttl=MODEL_CACHE_TTL)
+@ttl_cache(ttl=settings.MODEL_CACHE_TTL)
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
     chat_id = str(chat.id)
     chat_messages = db.find_one(chat_id=chat_id)
     if chat_messages:
         text = chat_messages['text']
-        text_limited = "\n".join(text.splitlines()[0:MESSAGE_LIMIT])
-        return markovify.text.NewlineText(text_limited)
+        text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
+        return markovify.text.NewlineText(text_limited, retain_original=False)
 
 
-@bot.message_handler(commands=[SENTENCE_COMMAND])
-def generate_sentence(message):
+@bot.message_handler(commands=[settings.SENTENCE_COMMAND])
+def generate_sentence(message, reply=False):
     chat_model = get_model(message.chat)
-    generated_message = chat_model.make_sentence(
+    generated_message = (chat_model.make_sentence(
         max_overlap_ratio=0.7,
         tries=50
-    ) if chat_model else None
+    ) if chat_model else None) or 'i need more data'
 
     logger.info(f'generating message for {message.chat.id}')
+
+    if reply:
+        bot.reply_to(message, generated_message)
+        return
+
     bot.send_message(
         message.chat.id,
-        generated_message or 'i need more data'
+        generated_message
     )
 
 
 @bot.message_handler(commands=['remove'])
+@admin_required
 def remove_messages(message):
-    if is_from_admin(message):
-        chat_id = str(message.chat.id)
-        db.delete(chat_id=chat_id)
-        get_model.cache_clear()
-        bot.reply_to(message, 'messages deleted')
-        logger.info(f'removing messages from {chat_id}')
-        return
-
-    bot.reply_to(message, 'u r not an admin 🤔')
+    chat_id = str(message.chat.id)
+    db.delete(chat_id=chat_id)
+    get_model.cache_clear()
+    bot.reply_to(message, 'messages deleted')
+    logger.info(f'removing messages from {chat_id}')
 
 
 @bot.message_handler(commands=['version'])
 def get_repo_version(message):
     hash_len = 7
-    commit_hash = environ.get('HEROKU_SLUG_COMMIT', '')
-    if len(commit_hash) > 0:
-        commit_hash = commit_hash[:hash_len]
+    commit_hash = settings.COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
 
 
 @bot.message_handler(commands=['flush'])
+@admin_required
 def flush_cache(message):
-    if is_from_admin(message):
-        get_model.cache_clear()
-        bot.reply_to(message, 'cache cleared')
-        logger.info('cache cleared')
-        return
+    get_model.cache_clear()
+    bot.reply_to(message, 'cache cleared')
+    logger.info('cache cleared')
     bot.reply_to(message, 'u r not an admin 🤔')
 
 
 @bot.message_handler(func=lambda m: True)
 def handle_message(message):
     update_model(message)
-    if bot.get_me().username in message.text:
-        generate_sentence(message)
+    if f'@{bot.get_me().username}' in message.text:
+        generate_sentence(message, reply=True)
 
 
 def update_model(message):

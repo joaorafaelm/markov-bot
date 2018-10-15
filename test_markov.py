@@ -8,7 +8,11 @@ from attrdict import AttrDict
 def message():
     AttrDict.__hash__ = lambda x: 1
     return AttrDict({
-        'chat': {'id': -1, 'title': 'test chat'},
+        'chat': {
+            'id': -1,
+            'title': 'test chat',
+            'type': 'group'
+        },
         'from_user': {'username': 'joao'},
         'user': {'username': 'joao'},
         'text': 'bla bla bla'
@@ -32,15 +36,15 @@ def test_handle_message(
     assert not mock_generate_sentence.called
 
 
-@mock.patch('markov.generate_sentence')
 @mock.patch('markov.update_model')
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
 def test_handle_message_with_mention(
     mock_db, mock_bot, mock_update_model,
-    mock_generate_sentence, message
+    message
 ):
-    message.text = 'hello, markov_bot!'
+    mock_db.find_one.return_value = {'text': 'bla bla bla'}
+    message.text = 'hello, @markov_bot!'
 
     mock_get_me = mock.Mock()
     mock_get_me.return_value.username = 'markov_bot'
@@ -48,7 +52,7 @@ def test_handle_message_with_mention(
 
     markov.handle_message(message)
     assert mock_update_model.called
-    assert mock_generate_sentence.called
+    assert mock_bot.reply_to.called
 
 
 @mock.patch('markov.bot')
@@ -84,7 +88,7 @@ def test_generate_sentence(mock_model, mock_bot, message):
 @mock.patch('markov.get_model')
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
-def test_remove_messages(mock_db, mock_bot, mock_model, message):
+def test_remove_messages_confirm(mock_db, mock_bot, mock_model, message):
     mock_bot.get_chat_administrators.return_value = [message]
     chat_id = str(message.chat.id)
     markov.remove_messages(message)
@@ -95,11 +99,31 @@ def test_remove_messages(mock_db, mock_bot, mock_model, message):
 
 @mock.patch('markov.get_model')
 @mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_remove_messages_no_permission(mock_db, mock_bot, mock_model, message):
+    mock_bot.get_chat_administrators.return_value = []
+    markov.remove_messages(message)
+    assert mock_db.delete.called is False
+    assert mock_model.cache_clear.called is False
+    assert mock_bot.reply_to.called_once_with(message, 'u r not an admin 🤔')
+
+
+@mock.patch('markov.get_model')
+@mock.patch('markov.bot')
 def test_flush_cache(mock_bot, mock_model, message):
     mock_bot.get_chat_administrators.return_value = [message]
     markov.flush_cache(message)
     assert mock_model.cache_clear.called
     assert mock_bot.reply_to.called
+
+
+@mock.patch('markov.get_model')
+@mock.patch('markov.bot')
+def test_flush_cache_invalid(mock_bot, mock_model, message):
+    mock_bot.get_chat_administrators.return_value = []
+    markov.flush_cache(message)
+    assert mock_model.cache_clear.called is False
+    assert mock_bot.reply_to.called_once_with(message, 'u r not an admin 🤔')
 
 
 @mock.patch('markov.bot')

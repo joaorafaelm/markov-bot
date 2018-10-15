@@ -3,3 +3,5 @@ venv/
 .DS_STORE
 *.swp
 .env
+.coverage
+__pycache__

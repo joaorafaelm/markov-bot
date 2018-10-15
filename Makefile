@@ -1,2 +1,5 @@
+run:
+	pipenv run python markov.py
+
 test:
-	pipenv run pytest -x -p no:warnings
+	pipenv run pytest -v -x -p no:warnings --cov=./
