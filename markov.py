@@ -33,6 +33,26 @@ def admin_required(func):
     return wrapper_admin_required
 
 
+def confirmation_required(confirmation_msg='are you sure?'):
+    def inner_decorator(func):
+        @functools.wraps(func)
+        def wrapper_confirmation_required(message, *args, **kwargs):
+            if message.text.startswith('/'):
+                markup = telebot.types.ReplyKeyboardMarkup(
+                    row_width=1, one_time_keyboard=True, selective=True
+                )
+                markup.add('yes', 'no')
+                reply = bot.reply_to(
+                    message, confirmation_msg,
+                    reply_markup=markup
+                )
+                bot.register_next_step_handler(reply, remove_messages)
+            elif message.text == 'yes':
+                return func(message, *args, **kwargs)
+        return wrapper_confirmation_required
+    return inner_decorator
+
+
 @ttl_cache(ttl=settings.MODEL_CACHE_TTL)
 def get_model(chat):
     logger.info(f'fetching messages for {chat.id}')
@@ -66,6 +86,7 @@ def generate_sentence(message, reply=False):
 
 @bot.message_handler(commands=['remove'])
 @admin_required
+@confirmation_required('this operation will delete all data, are you sure?')
 def remove_messages(message):
     chat_id = str(message.chat.id)
     db.delete(chat_id=chat_id)
