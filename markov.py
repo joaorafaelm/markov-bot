@@ -33,30 +33,32 @@ def admin_required(func):
     return wrapper_admin_required
 
 
-def confirmation_required(confirmation_msg='are you sure?'):
-    def inner_decorator(func):
-        @functools.wraps(func)
-        def wrapper_confirmation_required(message, *args, **kwargs):
-            if message.text.startswith('/'):
-                markup = telebot.types.ReplyKeyboardMarkup(
-                    row_width=1, one_time_keyboard=True, selective=True
-                )
-                markup.add('yes', 'no')
-                reply = bot.reply_to(
-                    message, confirmation_msg,
-                    reply_markup=markup
-                )
-                bot.register_next_step_handler(reply, remove_messages)
-                return
+def confirmation_required(func):
+    @functools.wraps(func)
+    def wrapper_confirmation_required(message, *args, **kwargs):
+        if message.text.startswith('/'):
+            markup = telebot.types.ReplyKeyboardMarkup(
+                row_width=1, one_time_keyboard=True, selective=True
+            )
+            markup.add('yes', 'no')
+            reply = bot.reply_to(
+                message, 'are you sure?',
+                reply_markup=markup
+            )
+            logger.info(f'sending confirmation keyboard to {func.__name__}')
+            callback = globals()[func.__name__]
+            bot.register_next_step_handler(reply, callback)
+            return
 
-            elif message.text == 'yes':
-                func(message, *args, **kwargs)
+        elif message.text == 'yes':
+            logger.info(f'received positive confirmation for {func.__name__}')
+            func(message, *args, **kwargs)
 
-            markup = telebot.types.ReplyKeyboardRemove()
-            bot.reply_to(message, 'ok', reply_markup=markup)
+        logger.info('removing keyboard')
+        markup = telebot.types.ReplyKeyboardRemove()
+        bot.reply_to(message, 'okay', reply_markup=markup)
 
-        return wrapper_confirmation_required
-    return inner_decorator
+    return wrapper_confirmation_required
 
 
 @ttl_cache(ttl=settings.MODEL_CACHE_TTL)
@@ -92,7 +94,7 @@ def generate_sentence(message, reply=False):
 
 @bot.message_handler(commands=['remove'])
 @admin_required
-@confirmation_required('this operation will delete all data, are you sure?')
+@confirmation_required
 def remove_messages(message):
     chat_id = str(message.chat.id)
     db.delete(chat_id=chat_id)
@@ -109,11 +111,10 @@ def get_repo_version(message):
 
 @bot.message_handler(commands=['flush'])
 @admin_required
+@confirmation_required
 def flush_cache(message):
     get_model.cache_clear()
-    bot.reply_to(message, 'cache cleared')
     logger.info('cache cleared')
-    bot.reply_to(message, 'u r not an admin 🤔')
 
 
 @bot.message_handler(func=lambda m: True)
