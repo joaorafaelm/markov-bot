@@ -47,8 +47,14 @@ def confirmation_required(confirmation_msg='are you sure?'):
                     reply_markup=markup
                 )
                 bot.register_next_step_handler(reply, remove_messages)
+                return
+
             elif message.text == 'yes':
-                return func(message, *args, **kwargs)
+                func(message, *args, **kwargs)
+
+            markup = telebot.types.ReplyKeyboardRemove()
+            bot.reply_to(message, 'ok', reply_markup=markup)
+
         return wrapper_confirmation_required
     return inner_decorator
 
@@ -91,7 +97,6 @@ def remove_messages(message):
     chat_id = str(message.chat.id)
     db.delete(chat_id=chat_id)
     get_model.cache_clear()
-    bot.reply_to(message, 'messages deleted')
     logger.info(f'removing messages from {chat_id}')
 
 
