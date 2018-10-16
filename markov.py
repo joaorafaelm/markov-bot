@@ -135,6 +135,12 @@ def update_model(message):
     logger.info(f'saving message from {chat_id}')
 
 
+def notify_admin(message):
+    if settings.ADMIN_CHAT_ID and message:
+        bot.send_message(settings.ADMIN_CHAT_ID, message)
+    logger.info(message)
+
+
 if __name__ == '__main__':
-    logger.info(f'starting the bot')
+    notify_admin('starting the bot')
     bot.polling(none_stop=True)
