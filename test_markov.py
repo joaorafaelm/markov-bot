@@ -161,3 +161,15 @@ def test_flush_cache_invalid(mock_bot, mock_model, message):
 def test_get_repo_version(mock_bot, message):
     markov.get_repo_version(message)
     assert mock_bot.reply_to.mock_model.called_once_with(message)
+
+
+@mock.patch('markov.bot')
+@mock.patch('markov.settings')
+def test_notify_admin(mock_settings, mock_bot):
+    mock_settings.ADMIN_CHAT_ID = 'ae'
+    message = 'ae'
+    markov.notify_admin(message)
+    assert mock_bot.send_message.called_once_with(
+        mock_settings.ADMIN_CHAT_ID,
+        message
+    )
