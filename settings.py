@@ -11,6 +11,7 @@ class Settings:
     MESSAGE_LIMIT = config('MESSAGE_LIMIT', default='5000', cast=int)
     MESSAGES_TABLE_NAME = config('MESSAGES_TABLE_NAME', default='messages')
     LOG_LEVEL = config('LOG_LEVEL', default='INFO')
+    ADMIN_CHAT_ID = config('ADMIN_CHAT_ID', default='')
 
 
 settings = Settings()
