@@ -92,7 +92,7 @@ def generate_sentence(message, reply=False):
     )
 
 
-@bot.message_handler(commands=['remove'])
+@bot.message_handler(commands=[settings.REMOVE_COMMAND])
 @admin_required
 @confirmation_required
 def remove_messages(message):
@@ -102,14 +102,14 @@ def remove_messages(message):
     logger.info(f'removing messages from {chat_id}')
 
 
-@bot.message_handler(commands=['version'])
+@bot.message_handler(commands=[settings.VERSION_COMMAND])
 def get_repo_version(message):
     hash_len = 7
     commit_hash = settings.COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
 
 
-@bot.message_handler(commands=['flush'])
+@bot.message_handler(commands=[settings.FLUSH_COMMAND])
 @admin_required
 @confirmation_required
 def flush_cache(message):
