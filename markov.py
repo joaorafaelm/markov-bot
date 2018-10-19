@@ -1,10 +1,11 @@
 import telebot
 import markovify
 import dataset
-from cachetools.func import ttl_cache
 import logging
-from settings import settings
 import functools
+from cachetools.func import ttl_cache
+from settings import settings
+from filters import message_filter
 
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
@@ -92,7 +93,7 @@ def generate_sentence(message, reply=False):
     )
 
 
-@bot.message_handler(commands=['remove'])
+@bot.message_handler(commands=[settings.REMOVE_COMMAND])
 @admin_required
 @confirmation_required
 def remove_messages(message):
@@ -102,14 +103,14 @@ def remove_messages(message):
     logger.info(f'removing messages from {chat_id}')
 
 
-@bot.message_handler(commands=['version'])
+@bot.message_handler(commands=[settings.VERSION_COMMAND])
 def get_repo_version(message):
     hash_len = 7
     commit_hash = settings.COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
 
 
-@bot.message_handler(commands=['flush'])
+@bot.message_handler(commands=[settings.FLUSH_COMMAND])
 @admin_required
 @confirmation_required
 def flush_cache(message):
@@ -117,7 +118,7 @@ def flush_cache(message):
     logger.info('cache cleared')
 
 
-@bot.message_handler(func=lambda m: True)
+@bot.message_handler(func=message_filter)
 def handle_message(message):
     update_model(message)
     if f'@{bot.get_me().username}' in message.text:

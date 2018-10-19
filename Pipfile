@@ -17,6 +17,7 @@ codecov = "*"
 ipdb = "*"
 pytest = "*"
 attrdict = "*"
+"flake8" = "*"
 
 [requires]
 python_full_version = "3.7.0"

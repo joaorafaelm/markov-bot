@@ -5,3 +5,4 @@ venv/
 .env
 .coverage
 __pycache__
+*.db
