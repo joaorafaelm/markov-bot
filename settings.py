@@ -15,6 +15,7 @@ class Settings:
     MESSAGES_TABLE_NAME = config('MESSAGES_TABLE_NAME', default='messages')
     LOG_LEVEL = config('LOG_LEVEL', default='INFO')
     ADMIN_CHAT_ID = config('ADMIN_CHAT_ID', default='')
+    FILTERS = config('FILTERS', default='', cast=Csv())
 
 
 settings = Settings()

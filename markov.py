@@ -1,10 +1,11 @@
 import telebot
 import markovify
 import dataset
-from cachetools.func import ttl_cache
 import logging
-from settings import settings
 import functools
+from cachetools.func import ttl_cache
+from settings import settings
+from filters import message_filter
 
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
@@ -117,7 +118,7 @@ def flush_cache(message):
     logger.info('cache cleared')
 
 
-@bot.message_handler(func=lambda m: True)
+@bot.message_handler(func=message_filter)
 def handle_message(message):
     update_model(message)
     if f'@{bot.get_me().username}' in message.text:
