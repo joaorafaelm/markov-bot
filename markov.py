@@ -11,9 +11,7 @@ from filters import message_filter
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
-db = dataset.connect(
-    settings.DATABASE_URL
-)[settings.MESSAGES_TABLE_NAME]
+db = dataset.connect(settings.DATABASE_URL)[settings.MESSAGES_TABLE_NAME]
 bot = telebot.TeleBot(settings.TELEGRAM_TOKEN)
 
 
@@ -70,7 +68,7 @@ def get_model(chat):
     if chat_messages:
         text = chat_messages['text']
         text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
-        return markovify.text.NewlineText(text_limited, retain_original=False)
+        return markovify.text.NewlineText(text_limited)
 
 
 @bot.message_handler(commands=[settings.SENTENCE_COMMAND])
