@@ -108,7 +108,7 @@ def get_repo_version(message):
     bot.reply_to(message, commit_hash)
 
 
-@bot.message_handler(commands[settings.FLUSH_COMMAND])
+@bot.message_handler(commands=[settings.FLUSH_COMMAND])
 @admin_required
 @confirmation_required
 def flush_cache(message):
