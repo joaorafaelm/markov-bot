@@ -4,7 +4,7 @@ import dataset
 from cachetools.func import ttl_cache
 import logging
 from settings import settings
-import functools
+from filters import message_filter
 
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
@@ -69,7 +69,7 @@ def get_model(chat):
     if chat_messages:
         text = chat_messages['text']
         text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
-        return markovify.text.NewlineText(text_limited)
+        return markovify.text.NewlineText(text_limited, retain_original=False)
 
 
 @bot.message_handler(commands=[settings.SENTENCE_COMMAND])
@@ -92,7 +92,7 @@ def generate_sentence(message, reply=False):
     )
 
 
-@bot.message_handler(commands=['remove'])
+@bot.message_handler(commands=[settings.REMOVE_COMMAND])
 @admin_required
 @confirmation_required
 def remove_messages(message):
@@ -102,7 +102,7 @@ def remove_messages(message):
     logger.info(f'removing messages from {chat_id}')
 
 
-@bot.message_handler(commands=['version'])
+@bot.message_handler(commands=[settings.VERSION_COMMAND])
 def get_repo_version(message):
     hash_len = 7
     commit_hash = settings.COMMIT_HASH[:hash_len]
@@ -117,7 +117,7 @@ def flush_cache(message):
     logger.info('cache cleared')
 
 
-@bot.message_handler(func=lambda m: True)
+@bot.message_handler(func=message_filter)
 def handle_message(message):
     update_model(message)
     if f'@{bot.get_me().username}' in message.text:
