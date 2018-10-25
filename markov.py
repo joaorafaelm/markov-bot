@@ -1,11 +1,10 @@
 import telebot
 import markovify
 import dataset
-import logging
-import functools
 from cachetools.func import ttl_cache
+import logging
 from settings import settings
-from filters import message_filter
+import functools
 
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
@@ -70,7 +69,7 @@ def get_model(chat):
     if chat_messages:
         text = chat_messages['text']
         text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
-        return markovify.text.NewlineText(text_limited, retain_original=False)
+        return markovify.text.NewlineText(text_limited)
 
 
 @bot.message_handler(commands=[settings.SENTENCE_COMMAND])
@@ -93,7 +92,7 @@ def generate_sentence(message, reply=False):
     )
 
 
-@bot.message_handler(commands=[settings.REMOVE_COMMAND])
+@bot.message_handler(commands=['remove'])
 @admin_required
 @confirmation_required
 def remove_messages(message):
@@ -103,14 +102,14 @@ def remove_messages(message):
     logger.info(f'removing messages from {chat_id}')
 
 
-@bot.message_handler(commands=[settings.VERSION_COMMAND])
+@bot.message_handler(commands=['version'])
 def get_repo_version(message):
     hash_len = 7
     commit_hash = settings.COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
 
 
-@bot.message_handler(commands=[settings.FLUSH_COMMAND])
+@bot.message_handler(commands=['flush'])
 @admin_required
 @confirmation_required
 def flush_cache(message):
@@ -118,7 +117,7 @@ def flush_cache(message):
     logger.info('cache cleared')
 
 
-@bot.message_handler(func=message_filter)
+@bot.message_handler(func=lambda m: True)
 def handle_message(message):
     update_model(message)
     if f'@{bot.get_me().username}' in message.text:
