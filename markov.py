@@ -1,8 +1,9 @@
 import telebot
 import markovify
 import dataset
-from cachetools.func import ttl_cache
 import logging
+import functools
+from cachetools.func import ttl_cache
 from settings import settings
 from filters import message_filter
 
@@ -10,9 +11,7 @@ from filters import message_filter
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
-db = dataset.connect(
-    settings.DATABASE_URL
-)[settings.MESSAGES_TABLE_NAME]
+db = dataset.connect(settings.DATABASE_URL)[settings.MESSAGES_TABLE_NAME]
 bot = telebot.TeleBot(settings.TELEGRAM_TOKEN)
 
 
@@ -69,7 +68,7 @@ def get_model(chat):
     if chat_messages:
         text = chat_messages['text']
         text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
-        return markovify.text.NewlineText(text_limited, retain_original=False)
+        return markovify.text.NewlineText(text_limited)
 
 
 @bot.message_handler(commands=[settings.SENTENCE_COMMAND])
@@ -109,7 +108,7 @@ def get_repo_version(message):
     bot.reply_to(message, commit_hash)
 
 
-@bot.message_handler(commands=['flush'])
+@bot.message_handler(commands[settings.FLUSH_COMMAND])
 @admin_required
 @confirmation_required
 def flush_cache(message):
