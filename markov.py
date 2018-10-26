@@ -3,7 +3,6 @@ import markovify
 import dataset
 import logging
 import functools
-import textwrap
 from cachetools.func import ttl_cache
 from settings import settings
 from filters import message_filter
@@ -116,17 +115,20 @@ def flush_cache(message):
     get_model.cache_clear()
     logger.info('cache cleared')
 
+
 @bot.message_handler(commands=[settings.HELP_COMMAND])
 def help(message):
-    help_text = f"""Welcome to MarkovBot, a Telegram bot that writes like you do using Markov chains!
+    help_text = (
+        f'Welcome to MarkovBot, a Telegram bot that writes like you do using '
+         'Markov chains!\n\n'
+         '{settings.SENTENCE_COMMAND}: MarkovBot will generate a message.'
+         '{settings.REMOVE_COMMAND}: MarkovBot will remove messages from chat.'
+         '{settings.VERSION_COMMAND}: MarkovBot will state its current version.'
+         '{settings.FLUSH_COMMAND}: MarkovBot will clear its cache.'
+         '{settings.HELP_COMMAND}: MarkovBot will print this help message!'
+    )
+    bot.reply_to(message, help_text)
 
-                    {settings.SENTENCE_COMMAND}: MarkovBot will generate a message.
-                    {settings.REMOVE_COMMAND}: MarkovBot will remove messages from chat.
-                    {settings.VERSION_COMMAND}: MarkovBot will state its current version.
-                    {settings.FLUSH_COMMAND}: MarkovBot will clear its cache.
-                    {settings.HELP_COMMAND}: MarkovBot will print this help message!"""
-    output_text = textwrap.dedent(help_text)
-    bot.reply_to(message, output_text)
 
 @bot.message_handler(func=message_filter)
 def handle_message(message):
