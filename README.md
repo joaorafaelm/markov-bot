@@ -41,7 +41,7 @@ $ make test
 $ make run
 ```
 #### 5. Permissions
-Disable the bot privacy settings (it means that the bot will receive all messages, not just the ones starting with "/") and run the command `/enable` to start collecting text.
+Disable the bot privacy settings (it means that the bot will receive all messages, not just the ones starting with "/").
 Run `/sentence` (*or the command you defined using the env var `SENTENCE_COMMAND`*) to generate random sentences.
 If you wish to delete the model, run `/remove`.
 
