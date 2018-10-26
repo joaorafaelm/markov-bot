@@ -148,13 +148,10 @@ def help(message):
 @bot.message_handler(commands=[settings.START_COMMAND])
 def start(message):
     bot.reply_to(message, f"Welcome to MarkovBot, a Telegram bot that writes "
-                          f"like you do by using Markov chains. To get "
-                          f"started with the bot, please enable it, and give "
-                          f"it access to all messages by disabling privacy "
-                          f"mode. Whenever you want to get a message from "
-                          f"your stored Markov chains, run "
-                          f"/{settings.SENTENCE_COMMAND} or mention the bot. "
-                          f"For more information, use "
+                          f"like you do by using Markov chains. Whenever you "
+                          f"want to get a message from your stored Markov "
+                          f"chains, run /{settings.SENTENCE_COMMAND} or "
+                          f"mention the bot. For more information, use "
                           f"/{settings.HELP_COMMAND}.")
 
 
