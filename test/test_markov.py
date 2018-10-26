@@ -157,6 +157,7 @@ def test_notify_admin(mock_settings, mock_bot):
         message
     )
 
+
 @mock.patch('markov.bot')
 def test_help(mock_bot, message):
     markov.help(message)
