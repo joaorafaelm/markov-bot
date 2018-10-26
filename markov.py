@@ -116,6 +116,32 @@ def flush_cache(message):
     logger.info('cache cleared')
 
 
+@bot.message_handler(commands=[settings.HELP_COMMAND])
+def help(message):
+    username = bot.get_me().username
+    sentence_command = settings.SENTENCE_COMMAND
+    remove_command = settings.REMOVE_COMMAND
+    version_command = settings.VERSION_COMMAND
+    flush_command = settings.FLUSH_COMMAND
+    help_command = settings.HELP_COMMAND
+
+    help_text = (
+        "Welcome to MarkovBot, a Telegram bot that writes like you do using "
+        "Markov chains!\n\n"
+        "{sentence_command}: {username} will generate a message.\n"
+        "{remove_command}: {username} will remove messages from chat.\n"
+        "{version_command}: {username} will state its current version.\n"
+        "{flush_command}: {username} will clear its cache.\n"
+        "{help_command}: {username} will print this help message!"
+    )
+    output_text = help_text.format(
+        username=username, sentence_command=sentence_command,
+        remove_command=remove_command, version_command=version_command,
+        flush_command=flush_command, help_command=help_command
+    )
+    bot.reply_to(message, output_text)
+
+
 @bot.message_handler(func=message_filter)
 def handle_message(message):
     update_model(message)
