@@ -9,6 +9,7 @@ class Settings:
     VERSION_COMMAND = config('VERSION_COMMAND', default='version')
     FLUSH_COMMAND = config('FLUSH_COMMAND', default='flush')
     HELP_COMMAND = config('HELP_COMMAND', default='help')
+    START_COMMAND = config('START_COMMAND', default='start')
     DATABASE_URL = config('DATABASE_URL', default='sqlite:///:memory:')
     MODEL_CACHE_TTL = config('MODEL_CACHE_TTL', default='300', cast=int)
     COMMIT_HASH = config('HEROKU_SLUG_COMMIT', default='not set')
