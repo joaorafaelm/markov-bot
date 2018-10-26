@@ -162,4 +162,3 @@ def test_notify_admin(mock_settings, mock_bot):
 def test_help(mock_bot, message):
     markov.help(message)
     assert mock_bot.reply_to.called
-
