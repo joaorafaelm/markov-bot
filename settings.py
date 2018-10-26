@@ -17,6 +17,7 @@ class Settings:
     LOG_LEVEL = config('LOG_LEVEL', default='INFO')
     ADMIN_CHAT_ID = config('ADMIN_CHAT_ID', default='')
     FILTERS = config('FILTERS', default='', cast=Csv())
+    MODEL_LANG = config('MODEL_LANG', default='', cast=Csv())
 
 
 settings = Settings()
