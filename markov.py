@@ -120,12 +120,14 @@ def flush_cache(message):
 def help(message):
     help_text = (
         f'Welcome to MarkovBot, a Telegram bot that writes like you do using '
-         'Markov chains!\n\n'
-         '{settings.SENTENCE_COMMAND}: MarkovBot will generate a message.'
-         '{settings.REMOVE_COMMAND}: MarkovBot will remove messages from chat.'
-         '{settings.VERSION_COMMAND}: MarkovBot will state its current version.'
-         '{settings.FLUSH_COMMAND}: MarkovBot will clear its cache.'
-         '{settings.HELP_COMMAND}: MarkovBot will print this help message!'
+        'Markov chains!\n\n'
+        '{settings.SENTENCE_COMMAND}: MarkovBot will generate a message.\n'
+        '{settings.REMOVE_COMMAND}: MarkovBot will remove messages from chat.'
+        '\n'
+        '{settings.VERSION_COMMAND}: MarkovBot will state its current version'
+        '.\n'
+        '{settings.FLUSH_COMMAND}: MarkovBot will clear its cache.\n'
+        '{settings.HELP_COMMAND}: MarkovBot will print this help message!'
     )
     bot.reply_to(message, help_text)
 
