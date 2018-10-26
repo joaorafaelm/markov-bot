@@ -124,7 +124,7 @@ def help(message):
     version_command = settings.VERSION_COMMAND
     flush_command = settings.FLUSH_COMMAND
     help_command = settings.HELP_COMMAND
-    
+
     help_text = (
         "Welcome to MarkovBot, a Telegram bot that writes like you do using "
         "Markov chains!\n\n"
