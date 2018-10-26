@@ -162,3 +162,9 @@ def test_notify_admin(mock_settings, mock_bot):
 def test_help(mock_bot, message):
     markov.help(message)
     assert mock_bot.reply_to.called
+
+
+@mock.patch('markov.bot')
+def test_start(mock_bot, message):
+    markov.start(message)
+    assert mock_bot.reply_to.called
