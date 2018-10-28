@@ -20,30 +20,32 @@ if settings.MODEL_LANG:
         nlp[lang].add_pipe(ld)
 
 
+def process_text(text):
+    logger.debug('performing n.l.p.')
+    lang = next(iter(nlp))
+    doc = nlp[lang](text)
+    scores = doc._.language_scores.items()
+    if scores:
+        guess = max(scores, key=operator.itemgetter(1))[0]
+        if guess != lang and guess in nlp:
+            doc = nlp[guess](text)
+    return doc
+
+
 class PosifiedText(markovify.NewlineText):
     def word_split(self, sentence):
         logger.debug('spliting sentece into words')
         return ['::'.join((w.text, w.pos_, w.dep_))
-                for w in self.nlp(sentence)]
+                for w in process_text(sentence)]
 
     def word_join(self, words):
         logger.debug('joining words into sentence')
         sentence = ' '.join(w.split('::')[0] for w in words)
         return re.sub(r'\s([!?.,;"](?:\s|$))', r'\1', sentence)
 
-    def nlp(self, text):
-        logger.debug('performing n.l.p.')
-        lang = next(iter(nlp))
-        doc = nlp[lang](text)
-        scores = doc._.language_scores.items()
-        if scores:
-            guess = max(scores, key=operator.itemgetter(1))[0]
-            if guess != lang and guess in nlp:
-                doc = nlp[guess](text)
-        return doc
-
 
 def new_model(text):
+    logger.debug('creating a new model')
     Cls = PosifiedText if settings.MODEL_LANG else markovify.NewlineText
     return Cls(text, retain_original=False)
 
