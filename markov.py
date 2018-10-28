@@ -123,6 +123,7 @@ def help(message):
     remove_command = settings.REMOVE_COMMAND
     version_command = settings.VERSION_COMMAND
     flush_command = settings.FLUSH_COMMAND
+    start_command = settings.START_COMMAND
     help_command = settings.HELP_COMMAND
 
     help_text = (
@@ -132,14 +133,26 @@ def help(message):
         "{remove_command}: {username} will remove messages from chat.\n"
         "{version_command}: {username} will state its current version.\n"
         "{flush_command}: {username} will clear its cache.\n"
+        "{start_command}: {username} will display quickstart info.\n"
         "{help_command}: {username} will print this help message!"
     )
     output_text = help_text.format(
         username=username, sentence_command=sentence_command,
         remove_command=remove_command, version_command=version_command,
-        flush_command=flush_command, help_command=help_command
+        flush_command=flush_command, start_command=start_command,
+        help_command=help_command
     )
     bot.reply_to(message, output_text)
+
+
+@bot.message_handler(commands=[settings.START_COMMAND])
+def start(message):
+    bot.reply_to(message, f"Welcome to MarkovBot, a Telegram bot that writes "
+                          f"like you do by using Markov chains. Whenever you "
+                          f"want to get a message from your stored Markov "
+                          f"chains, run /{settings.SENTENCE_COMMAND} or "
+                          f"mention the bot. For more information, use "
+                          f"/{settings.HELP_COMMAND}.")
 
 
 @bot.message_handler(func=message_filter)
