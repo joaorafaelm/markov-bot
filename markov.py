@@ -1,17 +1,13 @@
 import telebot
-import markovify
-import dataset
+import speech
 import logging
 import functools
-from cachetools.func import ttl_cache
 from settings import settings
 from filters import message_filter
-
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
-db = dataset.connect(settings.DATABASE_URL)[settings.MESSAGES_TABLE_NAME]
 bot = telebot.TeleBot(settings.TELEGRAM_TOKEN)
 
 
@@ -60,49 +56,27 @@ def confirmation_required(func):
     return wrapper_confirmation_required
 
 
-@ttl_cache(ttl=settings.MODEL_CACHE_TTL)
-def get_model(chat):
-    logger.info(f'fetching messages for {chat.id}')
-    chat_id = str(chat.id)
-    chat_messages = db.find_one(chat_id=chat_id)
-    if chat_messages:
-        text = chat_messages['text']
-        text_limited = '\n'.join(text.splitlines()[-settings.MESSAGE_LIMIT:])
-        return markovify.text.NewlineText(text_limited)
-
-
 @bot.message_handler(commands=[settings.SENTENCE_COMMAND])
 def generate_sentence(message, reply=False):
-    chat_model = get_model(message.chat)
-    generated_message = (chat_model.make_sentence(
-        max_overlap_ratio=0.7,
-        tries=50
-    ) if chat_model else None) or 'i need more data'
-
-    logger.info(f'generating message for {message.chat.id}')
-
+    logger.info(f'sentence cmd called by chat {message.chat.id}')
+    generated_message = speech.new_message(message.chat)
     if reply:
         bot.reply_to(message, generated_message)
-        return
-
-    bot.send_message(
-        message.chat.id,
-        generated_message
-    )
+    else:
+        bot.send_message(message.chat.id, generated_message)
 
 
 @bot.message_handler(commands=[settings.REMOVE_COMMAND])
 @admin_required
 @confirmation_required
 def remove_messages(message):
-    chat_id = str(message.chat.id)
-    db.delete(chat_id=chat_id)
-    get_model.cache_clear()
-    logger.info(f'removing messages from {chat_id}')
+    logger.info(f'remove cmd called by chat {message.chat.id}')
+    speech.delete_model(message.chat)
 
 
 @bot.message_handler(commands=[settings.VERSION_COMMAND])
 def get_repo_version(message):
+    logger.info(f'version cmd called by chat {message.chat.id}')
     hash_len = 7
     commit_hash = settings.COMMIT_HASH[:hash_len]
     bot.reply_to(message, commit_hash)
@@ -112,12 +86,13 @@ def get_repo_version(message):
 @admin_required
 @confirmation_required
 def flush_cache(message):
-    get_model.cache_clear()
-    logger.info('cache cleared')
+    logger.info(f'flush cmd called by chat {message.chat.id}')
+    speech.flush()
 
 
 @bot.message_handler(commands=[settings.HELP_COMMAND])
 def help(message):
+    logger.info(f'help cmd called by chat {message.chat.id}')
     username = bot.get_me().username
     sentence_command = settings.SENTENCE_COMMAND
     remove_command = settings.REMOVE_COMMAND
@@ -157,20 +132,9 @@ def start(message):
 
 @bot.message_handler(func=message_filter)
 def handle_message(message):
-    update_model(message)
+    speech.update_model(message.chat, message.text)
     if f'@{bot.get_me().username}' in message.text:
         generate_sentence(message, reply=True)
-
-
-def update_model(message):
-    chat_id = str(message.chat.id)
-    chat_messages = db.find_one(chat_id=chat_id) or {}
-    db.upsert({
-        'chat_id': chat_id,
-        'text': '\n'.join([chat_messages.get('text', ''), message.text])
-    }, ['chat_id'])
-
-    logger.info(f'saving message from {chat_id}')
 
 
 def notify_admin(message):

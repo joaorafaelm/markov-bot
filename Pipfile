@@ -12,6 +12,8 @@ psycopg2-binary = "*"
 python-decouple = "*"
 pytest-cov = "*"
 codecov = "*"
+spacy = "*"
+spacy-cld = "*"
 
 [dev-packages]
 ipdb = "*"
