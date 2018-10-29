@@ -1,15 +1,60 @@
 import speech
 from unittest import mock
+from attrdict import AttrDict
 
 
-@mock.patch.dict(speech.nlp, {})
-@mock.patch('speech.settings')
-def test_process_text(mock_settings, message):
-    mock_settings.MODEL_LANG = ''
+@mock.patch('speech.LanguageDetector')
+@mock.patch('speech.spacy')
+def test_load_nlp_models(mock_spacy, mock_language_detector):
+    lang = 'en'
+    proc = mock.Mock()
+    mock_spacy.load.return_value = proc
+    nlp = speech.load_nlp_models([lang])
+    assert isinstance(nlp, AttrDict)
+    assert 'languages' in nlp
+    assert 'processors' in nlp
+    assert nlp.languages == (lang,)
+    assert nlp.processors == ((lang, proc),)
+
+
+@mock.patch('speech.LanguageDetector')
+def test_load_nlp_models_invalid_lang(mock_language_detector):
+    nlp = speech.load_nlp_models(['zz'])
+    assert nlp is None
+
+
+def test_load_nlp_models_no_lang():
+    assert speech.load_nlp_models('') is None
+
+
+@mock.patch('speech.nlp')
+def test_process_text(mock_nlp, nlp_output, message):
     doc = mock.Mock()
+    doc.return_value = nlp_output
     doc._.language_scores = {'en': 0.87}
-    speech.nlp['en'] = lambda t: doc
-    assert speech.process_text(message.text)
+    mock_nlp.languages = ['en']
+    mock_nlp.processors = [('en', lambda t: doc)]
+    assert speech.process_text(message.text) == doc
+
+
+@mock.patch('speech.nlp')
+def test_process_text_guessed_lang(mock_nlp, nlp_output, message):
+    doc1 = mock.Mock()
+    doc1.return_value = nlp_output
+    doc1._.language_scores = {'en': 0.11, 'pt': 0.89}
+
+    doc2 = mock.Mock()
+    doc2.return_value = reversed(nlp_output)
+    doc2._.language_scores = {'en': 0.11, 'pt': 0.89}
+
+    mock_nlp.languages = ['en', 'pt']
+    mock_nlp.processors = [('en', lambda t: doc1), ('pt', lambda t: doc2)]
+    assert speech.process_text(message.text) == doc2
+
+
+@mock.patch('speech.nlp', None)
+def test_process_text_without_nlp(message):
+    assert speech.process_text(message.text) == message.text
 
 
 @mock.patch.object(speech.PosifiedText, 'word_join')
@@ -105,3 +150,11 @@ def test_new_message(mock_get_model, message):
     speech.new_message(message.chat)
     assert mock_get_model.called
     assert model.make_sentence.called
+
+
+@mock.patch('speech.get_model')
+def test_new_message_empty_model(mock_get_model, message):
+    mock_get_model.return_value = None
+    msg = speech.new_message(message.chat)
+    assert mock_get_model.called
+    assert msg == 'i need more data'

@@ -5,6 +5,7 @@ import dataset
 import logging
 import operator
 import markovify
+from attrdict import AttrDict
 from settings import settings
 from cachetools.func import ttl_cache
 from spacy_cld import LanguageDetector
@@ -12,23 +13,41 @@ from spacy_cld import LanguageDetector
 logger = logging.getLogger(__name__)
 db = dataset.connect(settings.DATABASE_URL)[settings.MESSAGES_TABLE_NAME]
 
-if settings.MODEL_LANG:
-    ld = LanguageDetector()
-    nlp = {}
-    for lang in settings.MODEL_LANG:
-        nlp[lang] = spacy.load(lang)
-        nlp[lang].add_pipe(ld)
+
+def load_nlp_models(languages=[]):
+    nlp_models = None
+    if languages:
+        nlp_models = AttrDict({'languages': [], 'processors': []})
+        ld = LanguageDetector()
+        for lang in languages:
+            try:
+                model = spacy.load(lang)
+            except OSError:
+                logger.error(f'{lang} spacy module not found')
+                continue
+            model.add_pipe(ld)
+            nlp_models['languages'].append(lang)
+            nlp_models['processors'].append((lang, model))
+        if not nlp_models['languages']:
+            nlp_models = None
+    return nlp_models
+
+
+nlp = load_nlp_models(settings.MODEL_LANG)
 
 
 def process_text(text):
     logger.debug('performing n.l.p.')
-    lang = next(iter(nlp))
-    doc = nlp[lang](text)
+    if not nlp:
+        return text
+    lang, proc = nlp.processors[0]
+    doc = proc(text)
     scores = doc._.language_scores.items()
     if scores:
         guess = max(scores, key=operator.itemgetter(1))[0]
-        if guess != lang and guess in nlp:
-            doc = nlp[guess](text)
+        if guess != lang and guess in nlp.languages:
+            lang, proc = nlp.processors[nlp.languages.index(guess)]
+            doc = proc(text)
     return doc
 
 
