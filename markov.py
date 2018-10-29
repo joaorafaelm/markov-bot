@@ -165,6 +165,11 @@ def handle_message(message):
 def update_model(message):
     chat_id = str(message.chat.id)
     chat_messages = db.find_one(chat_id=chat_id) or {}
+
+    if message.text is None or message.text is '':
+        logger.debug("Received empty message, not altering the database.")
+        return
+
     db.upsert({
         'chat_id': chat_id,
         'text': '\n'.join([chat_messages.get('text', ''), message.text])

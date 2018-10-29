@@ -10,4 +10,8 @@ filters = list(filter(None, [PATTERNS.get(f, '') for f in settings.FILTERS]))
 
 
 def message_filter(message):
+    # If the message has no text, we just ignore it.
+    if not message.text:
+        return False
+
     return not any(re.search(f, message.text, re.I) for f in filters)
