@@ -7,8 +7,8 @@ from unittest import mock
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
 def test_handle_message(
-    mock_db, mock_bot, mock_update_model,
-    mock_generate_sentence, message
+        mock_db, mock_bot, mock_update_model,
+        mock_generate_sentence, message
 ):
     mock_get_me = mock.Mock()
     mock_get_me.return_value.username = 'markov_bot'
@@ -23,8 +23,8 @@ def test_handle_message(
 @mock.patch('markov.bot')
 @mock.patch('markov.db')
 def test_handle_message_with_mention(
-    mock_db, mock_bot, mock_update_model,
-    message
+        mock_db, mock_bot, mock_update_model,
+        message
 ):
     mock_db.find_one.return_value = {'text': 'bla bla bla'}
     message.text = 'hello, @markov_bot!'
@@ -51,6 +51,16 @@ def test_update_model(mock_db, mock_bot, message):
     }, ['chat_id'])
 
 
+@mock.patch('markov.bot')
+@mock.patch('markov.db')
+def test_update_model_on_empty_message(mock_db, mock_bot, message):
+    message.text = None
+    mock_db.find_one.return_value = ''
+
+    markov.update_model(message)
+    assert not mock_db.upsert.called
+
+
 @mock.patch('markov.db')
 def test_get_model(mock_db, message):
     mock_db.find_one.return_value = {'text': 'bla bla bla'}
@@ -73,7 +83,7 @@ def test_generate_sentence(mock_model, mock_bot, message):
 @mock.patch('markov.db')
 @mock.patch('markov.telebot.types.ReplyKeyboardMarkup')
 def test_remove_messages_ask_confirm(
-    mock_markup, mock_db, mock_bot, mock_model, message
+        mock_markup, mock_db, mock_bot, mock_model, message
 ):
     message.text = '/remove'
     mock_bot.get_chat_administrators.return_value = [message]
