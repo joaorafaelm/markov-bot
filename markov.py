@@ -132,7 +132,11 @@ def start(message):
 
 @bot.message_handler(func=message_filter)
 def handle_message(message):
-    speech.update_model(message.chat, message.text)
+    try:
+        speech.update_model(message.chat, message.text)
+    except ValueError as er:
+        logger.error(er)
+        return
     if f'@{bot.get_me().username}' in message.text:
         generate_sentence(message, reply=True)
 

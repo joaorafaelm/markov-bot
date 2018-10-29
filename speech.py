@@ -79,6 +79,10 @@ def get_model(chat):
 
 
 def update_model(chat, message):
+    if not chat or not hasattr(chat, 'id'):
+        raise ValueError('invalid type for chat')
+    if not message:
+        raise ValueError('message cannot be empty')
     logger.debug(f'updating model for chat-id:{chat.id}')
     model = new_model(message).chain
     chat_data = db.find_one(chat_id=chat.id) or {}

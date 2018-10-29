@@ -33,6 +33,19 @@ def test_handle_message_with_mention(
     assert mock_generate_sentence.called
 
 
+@mock.patch('markov.generate_sentence')
+@mock.patch('speech.update_model')
+@mock.patch('markov.bot')
+def test_handle_message_raising_exception(
+    mock_bot, mock_update_model, mock_generate_sentence, message
+):
+    mock_update_model.side_effect = ValueError('invalid param')
+    message.text = ''
+    markov.handle_message(message)
+    assert not mock_bot.get_me.called
+    assert not mock_generate_sentence.called
+
+
 @mock.patch('speech.new_message')
 @mock.patch('markov.bot')
 def test_generate_sentence(mock_bot, mock_new_message, message):
