@@ -157,10 +157,9 @@ def start(message):
 
 @bot.message_handler(func=message_filter)
 def handle_message(message):
+    update_model(message)
     if f'@{bot.get_me().username}' in message.text:
         generate_sentence(message, reply=True)
-    else:
-        update_model(message)
 
 
 def update_model(message):
