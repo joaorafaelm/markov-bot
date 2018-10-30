@@ -1,5 +1,5 @@
 import speech
-from pytest import raises
+from pytest import mark, raises
 from unittest import mock
 from attrdict import AttrDict
 
@@ -129,14 +129,14 @@ def test_update_model(mock_settings, mock_db, one_found, message):
     }, ['chat_id'])
 
 
-def test_update_model_raises_exception(message):
-    with raises(ValueError) as invalid_chat:
-        speech.update_model(None, message.text)
-    assert str(invalid_chat.value) == 'invalid type for chat'
-
-    with raises(ValueError) as empty_message:
-        speech.update_model(message.chat, '')
-    assert str(empty_message.value) == 'message cannot be empty'
+@mark.parametrize('p_chat,p_message,p_expected', [
+    (None, 'bla bla bla', 'invalid type for chat'),
+    (AttrDict({'id': -1}), '', 'message cannot be empty')
+])
+def test_update_model_raises_exception(p_chat, p_message, p_expected):
+    with raises(ValueError) as er:
+        speech.update_model(p_chat, p_message)
+    assert str(er.value) == p_expected
 
 
 @mock.patch('speech.get_model')
