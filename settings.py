@@ -14,7 +14,6 @@ class Settings:
     MODEL_CACHE_TTL = config('MODEL_CACHE_TTL', default='300', cast=int)
     COMMIT_HASH = config('HEROKU_SLUG_COMMIT', default='not set')
     MESSAGE_LIMIT = config('MESSAGE_LIMIT', default='5000', cast=int)
-    MESSAGES_TABLE_NAME = config('MESSAGES_TABLE_NAME', default='messages')
     LOG_LEVEL = config('LOG_LEVEL', default='INFO')
     ADMIN_CHAT_ID = config('ADMIN_CHAT_ID', default='')
     FILTERS = config('FILTERS', default='', cast=Csv())

@@ -11,7 +11,7 @@ from cachetools.func import ttl_cache
 from spacy_cld import LanguageDetector
 
 logger = logging.getLogger(__name__)
-db = dataset.connect(settings.DATABASE_URL)[settings.MESSAGES_TABLE_NAME]
+db = dataset.connect(settings.DATABASE_URL)['messages']
 
 
 def load_nlp_models(languages=[]):
