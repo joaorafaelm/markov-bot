@@ -11,7 +11,15 @@ from cachetools.func import ttl_cache
 from spacy_cld import LanguageDetector
 
 logger = logging.getLogger(__name__)
-db = dataset.connect(settings.DATABASE_URL)['messages']
+
+# ignore thread checking for sqlite
+engine_config = {
+    'connect_args': {'check_same_thread': False}
+} if settings.DATABASE_URL.startswith('sqlite') else {}
+
+db = dataset.connect(
+    settings.DATABASE_URL, engine_kwargs=engine_config
+)['messages']
 
 
 def load_nlp_models(languages=[]):
