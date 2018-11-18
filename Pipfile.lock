@@ -258,10 +258,10 @@
         },
         "msgpack-numpy": {
             "hashes": [
-                "sha256:0a8256ffcbee7fef50eff89a452e8873089e03d0bf88d83af87023ac71fdcf68",
-                "sha256:7253c389db3d858101bc38272c2f14936f5760e889cccf0d5683375327b6915d"
+                "sha256:20d3f679cd727e2b9acb59297988895a148add8995618e7437b80bb95e7a0d7d",
+                "sha256:a1638108538aaba55bebaef9d847dfb3064bb1c829e68301716a6a956fa6a0d6"
             ],
-            "version": "==0.4.3.2"
+            "version": "==0.4.4.2"
         },
         "murmurhash": {
             "hashes": [
