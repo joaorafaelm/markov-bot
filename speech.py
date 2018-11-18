@@ -80,7 +80,8 @@ def new_model(text):
 @ttl_cache(ttl=settings.MODEL_CACHE_TTL)
 def get_model(chat):
     logger.debug(f'fetching model for chat-id:{chat.id}')
-    chat_data = db.find_one(chat_id=chat.id) or {}
+    chat_id = str(chat.id)
+    chat_data = db.find_one(chat_id=chat_id) or {}
     if chat_data.get('chain', ''):
         chain = json.loads(chat_data.get('chain'))
         return PosifiedText.from_chain(chain)
@@ -93,13 +94,14 @@ def update_model(chat, message):
         raise ValueError('message cannot be empty')
     logger.debug(f'updating model for chat-id:{chat.id}')
     model = new_model(message).chain
-    chat_data = db.find_one(chat_id=chat.id) or {}
+    chat_id = str(chat.id)
+    chat_data = db.find_one(chat_id=chat_id) or {}
     if chat_data.get('chain', ''):
         chain = json.loads(chat_data.get('chain'))
         cur_m = markovify.Chain.from_json(chain)
         model = markovify.combine([cur_m, model])
     db.upsert({
-        'chat_id': chat.id,
+        'chat_id': chat_id,
         'text': '\n'.join([chat_data.get('text', ''), message]),
         'chain': json.dumps(model.to_json())
     }, ['chat_id'])
@@ -107,7 +109,8 @@ def update_model(chat, message):
 
 def delete_model(chat):
     logger.debug(f'deleting model for chat-id:{chat.id}')
-    db.delete(chat_id=chat.id)
+    chat_id = str(chat.id)
+    db.delete(chat_id=chat_id)
     get_model.cache_clear()
 
 
