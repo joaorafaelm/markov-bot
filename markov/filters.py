@@ -1,5 +1,5 @@
 import re
-from settings import settings
+from markov.settings import settings
 
 PATTERNS = {
     'email': r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+',

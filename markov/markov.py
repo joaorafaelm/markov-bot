@@ -1,9 +1,9 @@
 import telebot
-import speech
 import logging
 import functools
-from settings import settings
-from filters import message_filter
+from markov import speech
+from markov.settings import settings
+from markov.filters import message_filter
 
 logging.basicConfig(level=getattr(logging, settings.LOG_LEVEL))
 logger = logging.getLogger(__name__)

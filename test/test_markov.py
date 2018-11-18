@@ -1,10 +1,10 @@
-import markov
+from markov import markov
 from unittest import mock
 
 
-@mock.patch('markov.generate_sentence')
-@mock.patch('speech.update_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.generate_sentence')
+@mock.patch('markov.speech.update_model')
+@mock.patch('markov.markov.bot')
 def test_handle_message(
     mock_bot, mock_update_model, mock_generate_sentence, message
 ):
@@ -17,9 +17,9 @@ def test_handle_message(
     assert not mock_generate_sentence.called
 
 
-@mock.patch('markov.generate_sentence')
-@mock.patch('speech.update_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.generate_sentence')
+@mock.patch('markov.speech.update_model')
+@mock.patch('markov.markov.bot')
 def test_handle_message_with_mention(
     mock_bot, mock_update_model, mock_generate_sentence, message
 ):
@@ -33,9 +33,9 @@ def test_handle_message_with_mention(
     assert mock_generate_sentence.called
 
 
-@mock.patch('markov.generate_sentence')
-@mock.patch('speech.update_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.generate_sentence')
+@mock.patch('markov.speech.update_model')
+@mock.patch('markov.markov.bot')
 def test_handle_message_raising_exception(
     mock_bot, mock_update_model, mock_generate_sentence, message
 ):
@@ -46,8 +46,8 @@ def test_handle_message_raising_exception(
     assert not mock_generate_sentence.called
 
 
-@mock.patch('speech.new_message')
-@mock.patch('markov.bot')
+@mock.patch('markov.speech.new_message')
+@mock.patch('markov.markov.bot')
 def test_generate_sentence(mock_bot, mock_new_message, message):
     markov.generate_sentence(message)
     assert mock_new_message.called
@@ -55,8 +55,8 @@ def test_generate_sentence(mock_bot, mock_new_message, message):
     assert mock_bot.send_message.called
 
 
-@mock.patch('speech.new_message')
-@mock.patch('markov.bot')
+@mock.patch('markov.speech.new_message')
+@mock.patch('markov.markov.bot')
 def test_generate_sentence_for_reply(mock_bot, mock_new_message, message):
     markov.generate_sentence(message, reply=True)
     assert mock_new_message.called
@@ -64,8 +64,8 @@ def test_generate_sentence_for_reply(mock_bot, mock_new_message, message):
     assert not mock_bot.send_message.called
 
 
-@mock.patch('speech.delete_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.speech.delete_model')
+@mock.patch('markov.markov.bot')
 def test_remove_messages_no_permission(mock_bot, mock_delete_model, message):
     mock_bot.get_chat_administrators.return_value = []
     markov.remove_messages(message)
@@ -73,9 +73,9 @@ def test_remove_messages_no_permission(mock_bot, mock_delete_model, message):
     assert not mock_delete_model.delete.called
 
 
-@mock.patch('markov.telebot.types.ReplyKeyboardMarkup')
-@mock.patch('speech.delete_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.telebot.types.ReplyKeyboardMarkup')
+@mock.patch('markov.speech.delete_model')
+@mock.patch('markov.markov.bot')
 def test_remove_messages_ask_confirm(
     mock_bot, mock_delete_model, mock_markup, message
 ):
@@ -89,9 +89,9 @@ def test_remove_messages_ask_confirm(
     assert not mock_delete_model.called
 
 
-@mock.patch('markov.telebot.types.ReplyKeyboardRemove')
-@mock.patch('speech.delete_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.telebot.types.ReplyKeyboardRemove')
+@mock.patch('markov.speech.delete_model')
+@mock.patch('markov.markov.bot')
 def test_remove_messages_confirm(
     mock_bot, mock_delete_model, mock_markup, message
 ):
@@ -103,9 +103,9 @@ def test_remove_messages_confirm(
         message, 'okay', reply_markup=mock_markup)
 
 
-@mock.patch('markov.telebot.types.ReplyKeyboardRemove')
-@mock.patch('speech.delete_model')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.telebot.types.ReplyKeyboardRemove')
+@mock.patch('markov.speech.delete_model')
+@mock.patch('markov.markov.bot')
 def test_remove_messages_cancel(
     mock_bot, mock_delete_model, mock_markup, message
 ):
@@ -117,8 +117,8 @@ def test_remove_messages_cancel(
     assert not mock_delete_model.called
 
 
-@mock.patch('speech.flush')
-@mock.patch('markov.bot')
+@mock.patch('markov.speech.flush')
+@mock.patch('markov.markov.bot')
 def test_flush_cache_no_permission(mock_bot, mock_flush, message):
     mock_bot.get_chat_administrators.return_value = []
     markov.flush_cache(message)
@@ -126,9 +126,9 @@ def test_flush_cache_no_permission(mock_bot, mock_flush, message):
     assert not mock_flush.called
 
 
-@mock.patch('markov.telebot.types.ReplyKeyboardMarkup')
-@mock.patch('speech.flush')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.telebot.types.ReplyKeyboardMarkup')
+@mock.patch('markov.speech.flush')
+@mock.patch('markov.markov.bot')
 def test_flush_cache_ask_confirm(
     mock_bot, mock_flush, mock_markup, message
 ):
@@ -142,9 +142,9 @@ def test_flush_cache_ask_confirm(
     assert not mock_flush.called
 
 
-@mock.patch('markov.telebot.types.ReplyKeyboardRemove')
-@mock.patch('speech.flush')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.telebot.types.ReplyKeyboardRemove')
+@mock.patch('markov.speech.flush')
+@mock.patch('markov.markov.bot')
 def test_flush_cache_confirm(mock_bot, mock_flush, mock_markup, message):
     message.text = 'yes'
     mock_bot.get_chat_administrators.return_value = [message]
@@ -154,9 +154,9 @@ def test_flush_cache_confirm(mock_bot, mock_flush, mock_markup, message):
         message, 'okay', reply_markup=mock_markup)
 
 
-@mock.patch('markov.telebot.types.ReplyKeyboardRemove')
-@mock.patch('speech.flush')
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.telebot.types.ReplyKeyboardRemove')
+@mock.patch('markov.speech.flush')
+@mock.patch('markov.markov.bot')
 def test_flush_cache_cancel(mock_bot, mock_flush, mock_markup, message):
     message.text = 'no'
     mock_bot.get_chat_administrators.return_value = [message]
@@ -166,14 +166,14 @@ def test_flush_cache_cancel(mock_bot, mock_flush, mock_markup, message):
     assert not mock_flush.called
 
 
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.bot')
 def test_get_repo_version(mock_bot, message):
     markov.get_repo_version(message)
     assert mock_bot.reply_to.called
 
 
-@mock.patch('markov.bot')
-@mock.patch('markov.settings')
+@mock.patch('markov.markov.bot')
+@mock.patch('markov.markov.settings')
 def test_notify_admin(mock_settings, mock_bot):
     mock_settings.ADMIN_CHAT_ID = 'ae'
     message = 'ae'
@@ -184,13 +184,13 @@ def test_notify_admin(mock_settings, mock_bot):
     )
 
 
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.bot')
 def test_help(mock_bot, message):
     markov.help(message)
     assert mock_bot.reply_to.called
 
 
-@mock.patch('markov.bot')
+@mock.patch('markov.markov.bot')
 def test_start(mock_bot, message):
     markov.start(message)
     assert mock_bot.reply_to.called
