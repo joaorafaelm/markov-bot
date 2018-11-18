@@ -12,11 +12,15 @@ psycopg2-binary = "*"
 python-decouple = "*"
 pytest-cov = "*"
 codecov = "*"
+spacy = "*"
+spacy-cld = "*"
+attrdict = "*"
+alembic = "*"
+sqlalchemy-utils = "*"
 
 [dev-packages]
 ipdb = "*"
 pytest = "*"
-attrdict = "*"
 "flake8" = "*"
 
 [requires]

@@ -1,4 +1,8 @@
-.PHONY: run test
+.PHONY: run test db
+
+db:
+	pipenv run python makedb.py
+	pipenv run alembic upgrade head
 
 run:
 	pipenv run python markov.py
