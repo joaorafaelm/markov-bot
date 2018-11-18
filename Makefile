@@ -1,8 +1,10 @@
 .PHONY: run test db
 
-db:
-	pipenv run python markov/makedb.py
+migrate:
 	pipenv run alembic upgrade head
+
+db:
+	pipenv run python -m markov.makedb
 
 run:
 	pipenv run python -m markov.markov
