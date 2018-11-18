@@ -1,1 +1,1 @@
-worker: python markov.py
+worker: python -m markov.markov

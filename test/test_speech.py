@@ -1,11 +1,11 @@
-import speech
+from markov import speech
 from pytest import mark, raises
 from unittest import mock
 from attrdict import AttrDict
 
 
-@mock.patch('speech.LanguageDetector')
-@mock.patch('speech.spacy')
+@mock.patch('markov.speech.LanguageDetector')
+@mock.patch('markov.speech.spacy')
 def test_load_nlp_models(mock_spacy, mock_language_detector):
     lang = 'en'
     proc = mock.Mock()
@@ -18,7 +18,7 @@ def test_load_nlp_models(mock_spacy, mock_language_detector):
     assert nlp.processors == ((lang, proc),)
 
 
-@mock.patch('speech.LanguageDetector')
+@mock.patch('markov.speech.LanguageDetector')
 def test_load_nlp_models_invalid_lang(mock_language_detector):
     nlp = speech.load_nlp_models(['zz'])
     assert nlp is None
@@ -28,7 +28,7 @@ def test_load_nlp_models_no_lang():
     assert speech.load_nlp_models('') is None
 
 
-@mock.patch('speech.nlp')
+@mock.patch('markov.speech.nlp')
 def test_process_text(mock_nlp, nlp_output, message):
     doc = mock.Mock()
     doc.return_value = nlp_output
@@ -38,7 +38,7 @@ def test_process_text(mock_nlp, nlp_output, message):
     assert speech.process_text(message.text) == doc
 
 
-@mock.patch('speech.nlp')
+@mock.patch('markov.speech.nlp')
 def test_process_text_guessed_lang(mock_nlp, nlp_output, message):
     doc1 = mock.Mock()
     doc1.return_value = nlp_output
@@ -53,7 +53,7 @@ def test_process_text_guessed_lang(mock_nlp, nlp_output, message):
     assert speech.process_text(message.text) == doc2
 
 
-@mock.patch('speech.nlp', None)
+@mock.patch('markov.speech.nlp', None)
 def test_process_text_without_nlp(message):
     assert speech.process_text(message.text) == message.text
 
@@ -70,7 +70,7 @@ def test_PosifiedText_sequence(
     assert mock_word_join.called
 
 
-@mock.patch('speech.process_text')
+@mock.patch('markov.speech.process_text')
 def test_PosifiedText_values(
     mock_process_text, nlp_output, parsed_sentences, message
 ):
@@ -80,15 +80,15 @@ def test_PosifiedText_values(
     assert model.rejoined_text == message.text
 
 
-@mock.patch('speech.settings')
+@mock.patch('markov.speech.settings')
 def test_new_model(mock_settings, message):
     mock_settings.MODEL_LANG = ''
     model = speech.new_model(message.text)
     assert isinstance(model, speech.markovify.NewlineText)
 
 
-@mock.patch('speech.process_text')
-@mock.patch('speech.settings')
+@mock.patch('markov.speech.process_text')
+@mock.patch('markov.speech.settings')
 def test_new_model_with_nlp(
     mock_settings, mock_process_text, nlp_output, message
 ):
@@ -98,7 +98,7 @@ def test_new_model_with_nlp(
     assert isinstance(model, speech.PosifiedText)
 
 
-@mock.patch('speech.db')
+@mock.patch('markov.speech.db')
 def test_get_model(mock_db, one_found, message):
     mock_db.find_one.return_value = one_found
     model = speech.get_model(message.chat)
@@ -106,8 +106,8 @@ def test_get_model(mock_db, one_found, message):
     assert isinstance(model, speech.PosifiedText)
 
 
-@mock.patch('speech.db')
-@mock.patch('speech.settings')
+@mock.patch('markov.speech.db')
+@mock.patch('markov.speech.settings')
 def test_update_model(mock_settings, mock_db, one_found, message):
     mock_settings.MODEL_LANG = ''
     mock_db.find_one.return_value = one_found
@@ -139,21 +139,21 @@ def test_update_model_raises_exception(p_chat, p_message, p_expected):
     assert str(er.value) == p_expected
 
 
-@mock.patch('speech.get_model')
-@mock.patch('speech.db')
+@mock.patch('markov.speech.get_model')
+@mock.patch('markov.speech.db')
 def test_delete_model(mock_db, mock_get_model, message):
     speech.delete_model(message.chat)
     assert mock_db.delete.called_once_with(chat_id=message.chat.id)
     assert mock_get_model.cache_clear.called
 
 
-@mock.patch('speech.get_model')
+@mock.patch('markov.speech.get_model')
 def test_flush(mock_get_model):
     speech.flush()
     assert mock_get_model.cache_clear.called
 
 
-@mock.patch('speech.get_model')
+@mock.patch('markov.speech.get_model')
 def test_new_message(mock_get_model, message):
     model = mock.Mock()
     model.make_sentence.return_value = 'Live long and prosper.'
@@ -163,7 +163,7 @@ def test_new_message(mock_get_model, message):
     assert model.make_sentence.called
 
 
-@mock.patch('speech.get_model')
+@mock.patch('markov.speech.get_model')
 def test_new_message_empty_model(mock_get_model, message):
     mock_get_model.return_value = None
     msg = speech.new_message(message.chat)

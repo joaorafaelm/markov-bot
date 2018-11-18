@@ -1,6 +1,6 @@
 import argparse
 import logging
-from settings import settings
+from markov.settings import settings
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 

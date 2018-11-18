@@ -1,12 +1,12 @@
-import makedb
+from markov import makedb
 from unittest import mock
 
 
-@mock.patch('makedb.create_database')
-@mock.patch('makedb.database_exists')
-@mock.patch('makedb.create_engine')
-@mock.patch('makedb.argparse')
-@mock.patch('makedb.logging')
+@mock.patch('markov.makedb.create_database')
+@mock.patch('markov.makedb.database_exists')
+@mock.patch('markov.makedb.create_engine')
+@mock.patch('markov.makedb.argparse')
+@mock.patch('markov.makedb.logging')
 def test_create_db(
     mock_logging, mock_argparse, mock_create_engine,
     mock_database_exists, mock_create_database
@@ -33,11 +33,11 @@ def test_create_db(
     assert mock_create_database.called_once_with(engine.url)
 
 
-@mock.patch('makedb.create_database')
-@mock.patch('makedb.database_exists')
-@mock.patch('makedb.create_engine')
-@mock.patch('makedb.argparse')
-@mock.patch('makedb.logging')
+@mock.patch('markov.makedb.create_database')
+@mock.patch('markov.makedb.database_exists')
+@mock.patch('markov.makedb.create_engine')
+@mock.patch('markov.makedb.argparse')
+@mock.patch('markov.makedb.logging')
 def test_create_db_already_exists(
     mock_logging, mock_argparse, mock_create_engine,
     mock_database_exists, mock_create_database

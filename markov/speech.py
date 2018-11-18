@@ -6,7 +6,7 @@ import logging
 import operator
 import markovify
 from attrdict import AttrDict
-from settings import settings
+from markov.settings import settings
 from cachetools.func import ttl_cache
 from spacy_cld import LanguageDetector
 

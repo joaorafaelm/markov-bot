@@ -1,8 +1,8 @@
-import filters
+from markov import filters
 from unittest import mock
 
 
-@mock.patch('filters.filters', [r'^hello'])
+@mock.patch('markov.filters.filters', [r'^hello'])
 def test_message_filter(message):
     assert filters.message_filter(message)
     message.text = 'Hello, World'
