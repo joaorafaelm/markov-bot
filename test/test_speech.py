@@ -87,6 +87,14 @@ def test_new_model(mock_settings, message):
     assert isinstance(model, speech.markovify.NewlineText)
 
 
+@mock.patch('markov.speech.settings')
+def test_new_model_with_invalid_msg(mock_settings, message):
+    mock_settings.MODEL_LANG = ''
+    message.text = '\n'
+    model = speech.new_model(message.text)
+    assert not model
+
+
 @mock.patch('markov.speech.process_text')
 @mock.patch('markov.speech.settings')
 def test_new_model_with_nlp(
@@ -127,6 +135,16 @@ def test_update_model(mock_settings, mock_db, one_found, message):
         'text': expected_text,
         'chain': expected_chain
     }, ['chat_id'])
+
+
+@mock.patch('markov.speech.db')
+@mock.patch('markov.speech.settings')
+def test_update_model_with_invalid_msg(mock_settings, mock_db, message):
+    mock_settings.MODEL_LANG = ''
+    message.text = '\n'
+    speech.update_model(message.chat, message.text)
+    assert not mock_db.find_one.called
+    assert not mock_db.upsert.called
 
 
 @mark.parametrize('p_chat,p_message,p_expected', [

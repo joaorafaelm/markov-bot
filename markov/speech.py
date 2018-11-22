@@ -74,7 +74,12 @@ class PosifiedText(markovify.NewlineText):
 def new_model(text):
     logger.debug('creating a new model')
     Cls = PosifiedText if settings.MODEL_LANG else markovify.NewlineText
-    return Cls(text, retain_original=False)
+    model = None
+    try:
+        model = Cls(text, retain_original=False)
+    except KeyError:
+        logger.error(f'cannot create a chain from {text}')
+    return model
 
 
 @ttl_cache(ttl=settings.MODEL_CACHE_TTL)
@@ -93,7 +98,11 @@ def update_model(chat, message):
     if not message:
         raise ValueError('message cannot be empty')
     logger.debug(f'updating model for chat-id:{chat.id}')
-    model = new_model(message).chain
+    model = new_model(message)
+    if not model:
+        return
+    else:
+        model = model.chain
     chat_id = str(chat.id)
     chat_data = db.find_one(chat_id=chat_id) or {}
     if chat_data.get('chain', ''):
