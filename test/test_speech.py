@@ -111,7 +111,7 @@ def test_get_model(mock_db, one_found, message):
     mock_db.find_one.return_value = one_found
     model = speech.get_model(message.chat)
     assert mock_db.find_one.called
-    assert isinstance(model, speech.PosifiedText)
+    assert isinstance(model, speech.markovify.NewlineText)
 
 
 @mock.patch('markov.speech.db')
