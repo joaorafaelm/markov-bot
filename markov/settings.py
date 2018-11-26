@@ -18,6 +18,9 @@ class Settings:
     ADMIN_CHAT_ID = config('ADMIN_CHAT_ID', default='')
     FILTERS = config('FILTERS', default='', cast=Csv())
     MODEL_LANG = config('MODEL_LANG', default='', cast=Csv())
+    RETAIN_ORIG = config('RETAIN_ORIG', default=True, cast=bool)
+    MAX_OVERLAP_RATIO = config('MAX_OVERLAP_RATIO', default=0.7, cast=float)
+    TRIES = config('TRIES', default=50, cast=int)
 
 
 settings = Settings()

@@ -76,7 +76,8 @@ def new_model(text):
     Cls = PosifiedText if settings.MODEL_LANG else markovify.NewlineText
     model = None
     try:
-        model = Cls(re.sub(r'["\']', '', text), retain_original=False)
+        model = Cls(re.sub(r'["\']', '', text),
+                    retain_original=settings.RETAIN_ORIG)
     except KeyError:
         logger.error(f'cannot create a chain from {text}')
     return model
@@ -88,8 +89,9 @@ def get_model(chat):
     chat_id = str(chat.id)
     chat_data = db.find_one(chat_id=chat_id) or {}
     if chat_data.get('chain', ''):
+        Cls = PosifiedText if settings.MODEL_LANG else markovify.NewlineText
         chain = json.loads(chat_data.get('chain'))
-        return PosifiedText.from_chain(chain)
+        return Cls.from_chain(chain, corpus=chat_data.get('text', ''))
 
 
 def update_model(chat, message):
@@ -132,6 +134,9 @@ def new_message(chat):
     logger.debug(f'generating message for chat-id:{chat.id}')
     model = get_model(chat)
     if model:
-        return model.make_sentence(tries=50)
+        return model.make_sentence(
+            max_overlap_ratio=settings.MAX_OVERLAP_RATIO,
+            tries=settings.TRIES
+        )
     else:
         return 'i need more data'
