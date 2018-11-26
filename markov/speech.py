@@ -76,7 +76,7 @@ def new_model(text):
     Cls = PosifiedText if settings.MODEL_LANG else markovify.NewlineText
     model = None
     try:
-        model = Cls(text, retain_original=False)
+        model = Cls(re.sub(r'["\']', '', text), retain_original=False)
     except KeyError:
         logger.error(f'cannot create a chain from {text}')
     return model
