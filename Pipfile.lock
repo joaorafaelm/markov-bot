@@ -228,30 +228,22 @@
         },
         "msgpack": {
             "hashes": [
-                "sha256:0b3b1773d2693c70598585a34ca2715873ba899565f0a7c9a1545baef7e7fbdc",
-                "sha256:0bae5d1538c5c6a75642f75a1781f3ac2275d744a92af1a453c150da3446138b",
-                "sha256:0ee8c8c85aa651be3aa0cd005b5931769eaa658c948ce79428766f1bd46ae2c3",
-                "sha256:1369f9edba9500c7a6489b70fdfac773e925342f4531f1e3d4c20ac3173b1ae0",
-                "sha256:22d9c929d1d539f37da3d1b0e16270fa9d46107beab8c0d4d2bddffffe895cee",
-                "sha256:2ff43e3247a1e11d544017bb26f580a68306cec7a6257d8818893c1fda665f42",
-                "sha256:31a98047355d34d047fcdb55b09cb19f633cf214c705a765bd745456c142130c",
-                "sha256:8767eb0032732c3a0da92cbec5ac186ef89a3258c6edca09161472ca0206c45f",
-                "sha256:8acc8910218555044e23826980b950e96685dc48124a290c86f6f41a296ea172",
-                "sha256:ab189a6365be1860a5ecf8159c248f12d33f79ea799ae9695fa6a29896dcf1d4",
-                "sha256:cfd6535feb0f1cf1c7cdb25773e965cc9f92928244a8c3ef6f8f8a8e1f7ae5c4",
-                "sha256:e274cd4480d8c76ec467a85a9c6635bbf2258f0649040560382ab58cabb44bcf",
-                "sha256:f86642d60dca13e93260187d56c2bef2487aa4d574a669e8ceefcf9f4c26fd00",
-                "sha256:f8a57cbda46a94ed0db55b73e6ab0c15e78b4ede8690fa491a0e55128d552bb0",
-                "sha256:fcea97a352416afcbccd7af9625159d80704a25c519c251c734527329bb20d0e"
+                "sha256:9936ce3a530ca78db60b6631003b5f4ba383cfb1d9830a27d1b5c61857226e2f",
+                "sha256:72259661a83f8b08ef6ee83927ce4937f841226735824af5b10a536d886eeb36",
+                "sha256:102802a9433dcf36f939b632cce9dea87310b2f163bb37ffc8bc343677726e88",
+                "sha256:8ce9f88b6cb75d74eda2a5522e5c2e5ec0f17fd78605d6502abb61f46b306865",
+                "sha256:85f1342b9d7549dd3daf494100d47a3dc7daae703cdbfc2c9ee7bbdc8a492cba",
+                "sha256:cb4e228f3d93779a1d77a1e9d72759b79dfa2975c1a5bd2a090eaa98239fa4b1",
+                "sha256:64abc6bf3a2ac301702f5760f4e6e227d0fd4d84d9014ef9a40faa9d43365259"
             ],
-            "version": "==0.5.6"
+            "version": "==0.6.0"
         },
         "msgpack-numpy": {
             "hashes": [
-                "sha256:0a8256ffcbee7fef50eff89a452e8873089e03d0bf88d83af87023ac71fdcf68",
-                "sha256:7253c389db3d858101bc38272c2f14936f5760e889cccf0d5683375327b6915d"
+                "sha256:20d3f679cd727e2b9acb59297988895a148add8995618e7437b80bb95e7a0d7d",
+                "sha256:a1638108538aaba55bebaef9d847dfb3064bb1c829e68301716a6a956fa6a0d6"
             ],
-            "version": "==0.4.3.2"
+            "version": "==0.4.4.2"
         },
         "murmurhash": {
             "hashes": [
@@ -323,10 +315,10 @@
         },
         "plac": {
             "hashes": [
-                "sha256:854693ad90367e8267112ffbb8955f57d6fdeac3191791dc9ffce80f87fd2370",
-                "sha256:ba3f719a018175f0a15a6b04e6cc79c25fd563d348aacd320c3644d2a9baf89b"
+                "sha256:879d3009bee474cc96b5d7a4ebdf6fa0c4931008ecb858caf09eed9ca302c8da",
+                "sha256:b03f967f535b3bf5a71b191fa5eb09872a5cfb1e3b377efc4138995e10ba36d7"
             ],
-            "version": "==0.9.6"
+            "version": "==1.0.0"
         },
         "pluggy": {
             "hashes": [
