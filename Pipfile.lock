@@ -479,9 +479,9 @@
         },
         "spacy": {
             "hashes": [
-                "sha256:5842422a9af765a6d885ff9063db554f528ab78abd4706dd0535abde8e209783"
+                "sha256:123f3b70afa16516ffe458cd8718793e4aab8ab10085a9d0dc121076746dcb57"
             ],
-            "version": "==2.0.17"
+            "version": "==2.0.18"
         },
         "spacy-cld": {
             "hashes": [
