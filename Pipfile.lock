@@ -509,10 +509,9 @@
         },
         "sqlalchemy-utils": {
             "hashes": [
-                "sha256:ba46933fb4575a9a45f74a69572e2ca17988da1f9f5cfbd1eee2c48a1cef5dbc"
+                "sha256:d8c10eac729d9cdc22af694a1c2f144780787942df1eb70c0f0715d1fa6fcf9e"
             ],
-            "index": "pypi",
-            "version": "==0.33.8"
+            "version": "==0.33.9"
         },
         "thinc": {
             "hashes": [
