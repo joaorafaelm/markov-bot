@@ -44,10 +44,10 @@
         },
         "banal": {
             "hashes": [
-                "sha256:6d5acae445333eb8539407d5aecfc3cdc2e741ba03621ef3312109fd10cd74a5",
-                "sha256:b708b6162f225a471080509bc5636ed3a13ec18cdedb7dbd67c588ffd9357a39"
+                "sha256:57918f611a71e4f9a593cc47fe685f749d38be584975640c4c29dc390846b185",
+                "sha256:b4c183f11a7a739c932d0baadc8ae4d40ca8f02b38ad3779da32cf19a6cc9f6d"
             ],
-            "version": "==0.4.0"
+            "version": "==0.4.1"
         },
         "cachetools": {
             "hashes": [
