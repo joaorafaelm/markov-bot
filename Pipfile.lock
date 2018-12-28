@@ -305,10 +305,10 @@
         },
         "normality": {
             "hashes": [
-                "sha256:11b6e06ad1d4c8edefb5dca64893777d6cbc79ae81189d52d488df01a3bfc415",
-                "sha256:739c1b40cfaefabdf537972f0284df5ce0ddb371f9475b764f478cb25bc1c4be"
+                "sha256:2d8536f2f1a5f4d23671110d7c2dbb9ae12039dba8e3c113faf183b406363389",
+                "sha256:94c1f8f72c14ffc82296351fafba70bcfdc6b4c79bc385318de1b1fbe9985b22"
             ],
-            "version": "==0.6.1"
+            "version": "==1.0.0"
         },
         "numpy": {
             "hashes": [
