@@ -558,9 +558,9 @@
         },
         "sqlalchemy-utils": {
             "hashes": [
-                "sha256:e198404f2794b6dfacc704fbee1d29721904d84eb6369e7f5ab512f8f76a011a"
+                "sha256:3f1cb542cf0549a0de508d4919f3ad693a36230bf4cd13fdd6253549fec71182"
             ],
-            "version": "==0.33.10"
+            "version": "==0.33.11"
         },
         "thinc": {
             "hashes": [
