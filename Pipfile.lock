@@ -662,10 +662,10 @@
         },
         "decorator": {
             "hashes": [
-                "sha256:2c51dff8ef3c447388fe5e4453d24a2bf128d3a4c32af3fabef1f01c6851ab82",
-                "sha256:c39efa13fbdeb4506c476c9b3babf6a718da943dab7811c206005a4a956c080c"
+                "sha256:584a8133ce3d1a63bc31f9ca1719557a2378de418569dd81b3ab46d17bfccf0e",
+                "sha256:caf7abb367a4f4595aff11de0f2ada226136ab538433ba24fb12748c6fc68925"
             ],
-            "version": "==4.3.0"
+            "version": "==4.3.1"
         },
         "enum34": {
             "hashes": [
