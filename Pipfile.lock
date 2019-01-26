@@ -18,9 +18,9 @@
     "default": {
         "alembic": {
             "hashes": [
-                "sha256:35660f7e6159288e2be111126be148ef04cbf7306da73c8b8bd4400837bb08e3"
+                "sha256:16505782b229007ae905ef9e0ae6e880fddafa406f086ac7d442c1aaf712f8c2"
             ],
-            "version": "==1.0.6"
+            "version": "==1.0.7"
         },
         "atomicwrites": {
             "hashes": [
@@ -654,11 +654,11 @@
         },
         "configparser": {
             "hashes": [
-                "sha256:325053090574fdf809545fd37a874ee791eabcacf4e421182be3c3d629e0b187",
-                "sha256:5c7a4542b0e69eda3e87ac27f6bd50da1cd447eb886d04f4d402bc20035f2954",
-                "sha256:32c02ec32753d0aac4320b7e38447512797ac31a26f64b276cc0ffc49cb0fe65"
+                "sha256:c114ff90ee2e762db972fa205f02491b1f5cf3ff950decd8542c62970c9bedac",
+                "sha256:df28e045fbff307a28795b18df6ac8662be3219435560ddb068c283afab1ea7a",
+                "sha256:5bd5fa2a491dc3cfe920a3f2a107510d65eceae10e9c6e547b90261a4710df32"
             ],
-            "version": "==3.7.0"
+            "version": "==3.7.1"
         },
         "decorator": {
             "hashes": [
