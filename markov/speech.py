@@ -133,10 +133,11 @@ def flush():
 def new_message(chat):
     logger.debug(f'generating message for chat-id:{chat.id}')
     model = get_model(chat)
+    message = None
     if model:
-        return model.make_sentence(
+        message = model.make_sentence(
             max_overlap_ratio=settings.MAX_OVERLAP_RATIO,
             tries=settings.TRIES
         )
-    else:
-        return 'i need more data'
+
+    return message or 'i need more data'
