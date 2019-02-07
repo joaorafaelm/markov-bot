@@ -168,10 +168,10 @@
         },
         "dataset": {
             "hashes": [
-                "sha256:553ae778816a127f7b010e18f9ef79bffb9f1bfc299a0e7f27cecb20d5d78d08",
-                "sha256:4948a1e25e340fa8e1c33a897ef8d174531cafbf910bb3bede7abdfbe1660ae3"
+                "sha256:22305959711499b0da0464298f3589cd33cccf84cfdcce91dae352a528cb4821",
+                "sha256:06e6e8166a2ce12524ffbed97b82866caeaa2dd8e85ee65baccf3b815528e22e"
             ],
-            "version": "==1.1.1"
+            "version": "==1.1.2"
         },
         "dill": {
             "hashes": [
