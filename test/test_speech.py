@@ -114,20 +114,41 @@ def test_get_model(mock_db, one_found, message):
     assert isinstance(model, speech.markovify.NewlineText)
 
 
+@mark.parametrize('p_grow,p_limit,expected_text,expected_chain', [
+    (
+        True,
+        None,
+        'Hello, world!\nbla bla bla',
+        (
+            '"[[[\\"___BEGIN__\\", \\"___BEGIN__\\"], {\\"Hello,\\": 1, '
+            '\\"bla\\": 1}], [[\\"___BEGIN__\\", \\"Hello,\\"], '
+            '{\\"world!\\": 1}], [[\\"Hello,\\", \\"world!\\"], '
+            '{\\"___END__\\": 1}], [[\\"___BEGIN__\\", \\"bla\\"], '
+            '{\\"bla\\": 1}], [[\\"bla\\", \\"bla\\"], {\\"bla\\": 1, '
+            '\\"___END__\\": 1}]]"'
+        )
+    ),
+    (
+        False,
+        1,
+        'bla bla bla',
+        (
+            '"[[[\\"___BEGIN__\\", \\"___BEGIN__\\"], {\\"bla\\": 1}], '
+            '[[\\"___BEGIN__\\", \\"bla\\"], {\\"bla\\": 1}], [[\\"bla\\", '
+            '\\"bla\\"], {\\"bla\\": 1, \\"___END__\\": 1}]]"'
+        )
+    )
+])
 @mock.patch('markov.speech.db')
 @mock.patch('markov.speech.settings')
-def test_update_model(mock_settings, mock_db, one_found, message):
+def test_update_model(
+    mock_settings, mock_db, p_grow, p_limit,
+    expected_text, expected_chain, one_found, message
+):
     mock_settings.MODEL_LANG = ''
+    mock_settings.GROW_CHAIN = p_grow
+    mock_settings.MESSAGE_LIMIT = p_limit
     mock_db.find_one.return_value = one_found
-    expected_text = '\n'.join([one_found.get('text'), message.text])
-    expected_chain = (
-        '"[[[\\"___BEGIN__\\", \\"___BEGIN__\\"], {\\"Hello,\\": 1, '
-        '\\"bla\\": 1}], [[\\"___BEGIN__\\", \\"Hello,\\"], '
-        '{\\"world!\\": 1}], [[\\"Hello,\\", \\"world!\\"], '
-        '{\\"___END__\\": 1}], [[\\"___BEGIN__\\", \\"bla\\"], '
-        '{\\"bla\\": 1}], [[\\"bla\\", \\"bla\\"], {\\"bla\\": 1, '
-        '\\"___END__\\": 1}]]"'
-    )
     speech.update_model(message.chat, message.text)
     assert mock_db.find_one.called
     assert mock_db.upsert.called_once_with({
