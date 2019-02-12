@@ -107,13 +107,19 @@ def update_model(chat, message):
         model = model.chain
     chat_id = str(chat.id)
     chat_data = db.find_one(chat_id=chat_id) or {}
+    text = '\n'.join([chat_data.get('text', ''), message])
     if chat_data.get('chain', ''):
-        chain = json.loads(chat_data.get('chain'))
-        cur_m = markovify.Chain.from_json(chain)
-        model = markovify.combine([cur_m, model])
+        if settings.GROW_CHAIN:
+            chain = json.loads(chat_data.get('chain'))
+            cur_m = markovify.Chain.from_json(chain)
+            model = markovify.combine([cur_m, model])
+        else:
+            text = '\n'.join(
+                text.splitlines()[-settings.MESSAGE_LIMIT:])
+            model = new_model(text).chain
     db.upsert({
         'chat_id': chat_id,
-        'text': '\n'.join([chat_data.get('text', ''), message]),
+        'text': text,
         'chain': json.dumps(model.to_json())
     }, ['chat_id'])
 
