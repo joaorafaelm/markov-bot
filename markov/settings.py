@@ -21,6 +21,7 @@ class Settings:
     RETAIN_ORIG = config('RETAIN_ORIG', default=True, cast=bool)
     MAX_OVERLAP_RATIO = config('MAX_OVERLAP_RATIO', default=0.7, cast=float)
     TRIES = config('TRIES', default=50, cast=int)
+    GROW_CHAIN = config('GROW_CHAIN', default=False, cast=bool)
 
 
 settings = Settings()
