@@ -658,11 +658,10 @@
         },
         "configparser": {
             "hashes": [
-                "sha256:c114ff90ee2e762db972fa205f02491b1f5cf3ff950decd8542c62970c9bedac",
-                "sha256:df28e045fbff307a28795b18df6ac8662be3219435560ddb068c283afab1ea7a",
-                "sha256:5bd5fa2a491dc3cfe920a3f2a107510d65eceae10e9c6e547b90261a4710df32"
+                "sha256:3bdab5c38acb71c4e9b8508d11ac8e2fa6eeb1cf97e072a3c3d7f87db02302a9",
+                "sha256:d5f1d063e24c700e9809394853ebbabe6093d6842cbfcda1729bf40b126bcc18"
             ],
-            "version": "==3.7.1"
+            "version": "==3.7.2"
         },
         "decorator": {
             "hashes": [
