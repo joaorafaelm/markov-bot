@@ -9,3 +9,5 @@ script:
     - make test
 after_success:
     - codecov
+env:
+    - PIPENV_IGNORE_VIRTUALENVS=1
