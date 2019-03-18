@@ -525,22 +525,18 @@
         },
         "spacy": {
             "hashes": [
-                "sha256:0d3a985f79ca9b2966660cd9d0b880f7a998eaa8cd14ecd207a42ca5a4401703",
-                "sha256:123f3b70afa16516ffe458cd8718793e4aab8ab10085a9d0dc121076746dcb57",
-                "sha256:1dac9b9e054812cc0f846d5a4ce01f8758b0c1d6807327fb81a30f5685035a89",
-                "sha256:3515ab4143f7503eada723b2b4b2f851c780ad3aa9f665e7d2355cae3d5070e5",
-                "sha256:42f4578370b988a1e142bf84e596e2a370b75be6357202225b1d9cf33c5de4e0",
-                "sha256:5bb0cc71485d6b4a7678b6bc738c545599ba555413adad557b433338093bdd36",
-                "sha256:6cded7c8c5f83d225e6d7e8fa1d30180727d265d27fccdd31bbc4e340f2eb78b",
-                "sha256:799d74e4035ca8644afbe06312f3a399331acc9f4e81a7de8a9166fe267863b1",
-                "sha256:83ed5708e24228a629478407c473c0347a7cfbea9fd7999bb5d9dbae44f5008e",
-                "sha256:881141bf6ab12fba8d782095b07514e6bf1094e37f0380977e3750d138f3d236",
-                "sha256:896fb7d01c0e07dbde401119cddb2e0df2127f79dceb9596c09f37f5e9f3af74",
-                "sha256:aa7e91251e420baea2685d06f45c53c5d4a1dbf6a965e6cd75ce3cd8b23a2c66",
-                "sha256:afe43c38e7f1fd636b1a561c69c8654043a73d0a36fc61e6d51f32dca6b4514e",
-                "sha256:fbaba13090b05576c7fd507afceb571a6af92911973e6bd3eee1f99b8cbbccc1"
+                "sha256:1e41e9bcf13a590a6f6351e29b73fc0b6229bc53d51397951860b8373c0b24c2",
+                "sha256:233b063ecd6346fa7df05f920a9f24a7ac6861569d834835272ace533d1fdc50",
+                "sha256:8bd802978c736d248bdc367c09b02b6d9dee63812347425ddf835c2bc094429f",
+                "sha256:8e6ed82691a7a71300145092f89d61da7aac36da3ad036f9c3aebad0ff3287d7",
+                "sha256:a0b9d00c71ac574d87c99018a44f8d5989aa31a4fc2c81db4c112659b8968cad",
+                "sha256:bc764a066d961a5878c999db123375ce14207ee962c2c82082ab71514f928fd7",
+                "sha256:bd61d1e8cd913628dd1a7a1eaeb50cb43bfabc00fdf65b1be8ad091a43267cdf",
+                "sha256:c5475a21c5fa666dd9a2be9af290b5658081693c00f7da29dcf2961552a39f83",
+                "sha256:e3dbde5b560fb9dd3706bd6838e66e28119b6aa17bcb0711d53e95c830bcf0a7",
+                "sha256:ff413e92188fb551bd1efad705b93d64ce5f622518f79b7f37cbe35d9abdb1fd"
             ],
-            "version": "==2.0.18"
+            "version": "==2.1.0"
         },
         "spacy-cld": {
             "hashes": [
