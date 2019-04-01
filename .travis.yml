@@ -1,7 +1,8 @@
+dist: xenial
 language: python
 cache: pip
 python:
-    - "3.7-dev"
+    - "3.7.2"
 install:
     - pip install pipenv --upgrade
     - pipenv install --dev
