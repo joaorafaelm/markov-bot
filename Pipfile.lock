@@ -367,6 +367,13 @@
             ],
             "version": "==0.31"
         },
+        "pyrsistent": {
+            "hashes": [
+                "sha256:3ca82748918eb65e2d89f222b702277099aca77e34843c5eb9d52451173970e2"
+            ],
+            "index": "pypi",
+            "version": "==0.14.11"
+        },
         "pytelegrambotapi": {
             "hashes": [
                 "sha256:a4e8a98f97508a1c502c5a357536cf6c6e40dc4e5d4e58ebaedfba2d4f637e03"
