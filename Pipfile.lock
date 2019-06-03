@@ -179,9 +179,9 @@
         },
         "mako": {
             "hashes": [
-                "sha256:7165919e78e1feb68b4dbe829871ea9941398178fa58e6beedb9ba14acf63965"
+                "sha256:889c7f16d5388092d4c585cf9def19cad089e9f848a7c40e03394553048362a6"
             ],
-            "version": "==1.0.10"
+            "version": "==1.0.11"
         },
         "markovify": {
             "hashes": [
