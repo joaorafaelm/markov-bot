@@ -286,10 +286,10 @@
         },
         "plac": {
             "hashes": [
-                "sha256:879d3009bee474cc96b5d7a4ebdf6fa0c4931008ecb858caf09eed9ca302c8da",
-                "sha256:b03f967f535b3bf5a71b191fa5eb09872a5cfb1e3b377efc4138995e10ba36d7"
+                "sha256:7c16cfa7422a76b7525fc93d0be5c9c9a2d5250083e80ddac6621edb395dc081",
+                "sha256:ee0e529ae5f8104914e53b79a46d5687dcfc94b49deb6aed2665f40b2e4f0536"
             ],
-            "version": "==1.0.0"
+            "version": "==1.1.0"
         },
         "pluggy": {
             "hashes": [
