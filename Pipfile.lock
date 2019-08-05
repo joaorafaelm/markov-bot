@@ -445,18 +445,18 @@
         },
         "spacy": {
             "hashes": [
-                "sha256:2441ad9e6195669c13f4035dd77c4206414a40ebb8543c69f3386d984abfb942",
-                "sha256:92413e0ee146c0b4dd52959799aa6d61e7900f403269bda77cc549b025bedf2a",
-                "sha256:9a1c268e99ac8e19f3a98ecf2da0d8dc48ce0e8c5a6943c19cecccc48ea9f50e",
-                "sha256:ae392362e1b3769e54242cc341d237d39c94f80cded466c8f11862f26bd899da",
-                "sha256:b708bb5825976220de78ad7e20e827912ca95653738a812cc2e5d194e3060ae8",
-                "sha256:c383a4ea7682c124dacc119651c9710fa618aa2751bcafec99c876bdc7810ac0",
-                "sha256:ca8719ff445184913ca672bf544d9c5b59f77efc725510ffc43c83009fff3253",
-                "sha256:cdb331604c1568f7848c4d74320d65e1a7ebd5314eb63373ef41713b16333d4a",
-                "sha256:e1de6177fc259a4601cf8573f65c41021afad6fde975c6692e8ed21989c9492d",
-                "sha256:f6ed3d25aa8d46d9923ae607917a7d31666c04cf6a4f9314154586da4a8e7673"
+                "sha256:10b208898231153c67da4f2a34462eba201d0014b131de25565cb56b6582934c",
+                "sha256:18019d5b4544f2a635bdd35b784cc24dd3f42a905d44e05ccd4c21cb359a683c",
+                "sha256:3c3c4cb4b436ef87b7b6e58c8a9e0a109ecdcabf514222a08c178ea171748616",
+                "sha256:bcf74c94014c4ffddae47a06770f1f33d5d840df23fe5eb0f47e3a0447b08237",
+                "sha256:bf18fc7f17e49a4840ac21f1fa57a1171dc46d4e021272c78e882b8e4fadda26",
+                "sha256:caa676dcc40d8f54e1265a71f4f1c079d0b4588d2f0daff58e2528c1fc6b0d3a",
+                "sha256:e09fe6dcd92e9fe6614502b1a0bb9281b6fd0f029275fd0634444324368655d5",
+                "sha256:eb0f972363122605f3f205e1d1e39aacf2d0105d6a74af113ee394e232d6f98f",
+                "sha256:f7881c3a734565b763dde1cfa88e4877e27e5132bd46f29414f17d388cd1efff",
+                "sha256:ff386d92ae33a7c92fbe1553bbd41c0444ba0867679578452e7017f474c36b03"
             ],
-            "version": "==2.1.6"
+            "version": "==2.1.7"
         },
         "spacy-cld": {
             "hashes": [
