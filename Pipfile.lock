@@ -46,21 +46,21 @@
         },
         "blis": {
             "hashes": [
-                "sha256:039129410a338be8db8cf48c54334bd7c30da7e72bad2741e59313b1d242814b",
-                "sha256:058f9109aaea9d4f88cb623a44994d96c8cf36448de3e1bd30210628d6b52e9e",
-                "sha256:278d7b95e56cf82a6bef91cd8283eadc9401f2d3bdbbf2cdfdb605cf9081c36e",
-                "sha256:2d4ca1508fd6229c7994fc17ba324083a5b83f66612c8ea62623a41a1768b030",
-                "sha256:51a54bad6175e9b154beeb628a879ed492ee2247c9e40c77bdf6fc772145130c",
-                "sha256:886b313f96d4e268a0587e98c1637d963c73defa8de51e2e6b0d0bd00f16afbb",
-                "sha256:9f12e6f1e4b10dbb1e0e34e98f60e8435058a60d544a009cb761351fe1d12cad",
-                "sha256:a54d4fa1908d586f8bce9851a453cb89d1542e9aca65b8b88e9bb9432d626f80",
-                "sha256:b9d6cef13d95e3752320cd942df25e09160a6f9dfc3d7b41af7cdc772ab18270",
-                "sha256:d571464d195a950e60bf1547c8914d4da50952e06a0f38cea7b0829d0a4b985a",
-                "sha256:d616d64c85e6be92d69a1410dc58146cb9603fd1eb148f9ee512b8fddfd789f6",
-                "sha256:e477c7eaacf7dcccbb190a29559579efb287ecf5c2a9a7a6f9acb0452899f033",
-                "sha256:e6ae1986625af86f90f111f9d2d284b9e45fddfe56cf40524cdd9417a6a33b87"
+                "sha256:0b30c3922b84ca25a8c696b82950955b69b4f3ce56c22bc12325612c057fedb0",
+                "sha256:0f57d24c2278cf293267f636d51d14d743d691b10fc2b44c97ea7c1668e4fe28",
+                "sha256:1c6f0e338163adcfa9921ebe99c925b4fec775947eb397e0a89538bc7d0057be",
+                "sha256:2887340c5344367b992b7a00fac53fa76978d381003e8470488b359060b4963b",
+                "sha256:313c7c44ad45383ca88536a32d460353d3c3053f2b66615bf67a214486ef90c5",
+                "sha256:4277e82401a544fbdd78cbda92c382a7a013bd912ea34fc7bf6e9682084cd721",
+                "sha256:58b4a840aa27f227345681155b3d683e852f1eaaede23bdd60fcc92aa8fc79ac",
+                "sha256:5f8ae83a1703ac0db8eab00b07579c8d07236fafa6c609fe2a102a725504f453",
+                "sha256:6a5c31eea061481fd57c22551b045b9d290a72a7b68740fb67c5ecea92b44100",
+                "sha256:bed7866ce91ad3957118cbc332863b1f26b5fb3092e5c4c1318947e8e126fba3",
+                "sha256:cbc7e945b4d0b0d8ee21e0b80d538a5c64db2e8fbd31fbd8826a8cdeb5b2e5f7",
+                "sha256:e6beedfcfddd34c13ee706975979abd5f25f132e675d105539a53c437aaf11f1",
+                "sha256:fa543271bcdb564062cc89bb29497610065fb0730326e0cdd99ab913bee2e68a"
             ],
-            "version": "==0.2.4"
+            "version": "==0.3.1"
         },
         "cachetools": {
             "hashes": [
