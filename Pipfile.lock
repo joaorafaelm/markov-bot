@@ -358,9 +358,9 @@
         },
         "pycld2": {
             "hashes": [
-                "sha256:7d0f51b1550a6f964409f55f02b1f784d59a0d1b2718efa87c14d43344078403"
+                "sha256:a42f6e974df8fdd70685c2baa8a9f523069a260e1140ce604fb9f1fb6c3064df"
             ],
-            "version": "==0.31"
+            "version": "==0.41"
         },
         "pyparsing": {
             "hashes": [
