@@ -494,20 +494,20 @@
         },
         "thinc": {
             "hashes": [
-                "sha256:375c55121a16e0af68de2740ecf30267a14b1b5cf538742e1e0d9afa94822234",
-                "sha256:3c54849156b265b85bffd0c926622278a2247ec48e76cd669442bbd3d3ad4bc6",
-                "sha256:68478efee64a5523d881d47914a92e315bb31bf0a404cec1ff7be83b0a267f3e",
-                "sha256:82fb5fa6b04501d0c94ac1647ed45dfaa811da9d3562c4e416f9d25d57b80eaa",
-                "sha256:87282f7916880feac74a0e2df3f5613afb85623da3e2c7dcfa9f5d90c1697290",
-                "sha256:8baf7d81e1a5bbbdda3fb739cacd451c8b977f3c125dc22d284e0c7513d890cb",
-                "sha256:93f36ff3c26ce72cf24054f06f2632032c220c126e18a48e23f39cc788880b6e",
-                "sha256:a1ca70d25d96e26f2b968eb0be0fc21c95f77a68111b1a4087f8a07ebfc70c48",
-                "sha256:a52367f48155ea1986aed895f2998032a16e64c3c6b195ab5d8ad79abe16c73e",
-                "sha256:b518435ddf74d45139935997520d94cc3080d68beda7a111a3183f3aa9417887",
-                "sha256:cf2c9f441323627ea1d4da10a674cb4ad27e18f5dce48d46d150504c7a2a96c4",
-                "sha256:f5d369e085149c78cc967ae0dee28d37be72449186bed46fe392474f069c4d49"
+                "sha256:05517d37a9e573e48b09163ddc55d116272becf060669fd19ed9906934b2329b",
+                "sha256:17d5bc68c3eee64e776876c3a245c20d3bdbe343cb491674d8d1b0efeaf0e6ba",
+                "sha256:2d31491dd98bcfe515c2b8019b419623decbe80a42f5e9a692d3d34ea3a20d40",
+                "sha256:422e157eefb0d9d554d158f8d130863ba632c24d432a8f2496056390e03431d2",
+                "sha256:56df1b644926c74fec78764aad095df73403a95a8aef7176da535dafe76ff072",
+                "sha256:808caccafab95aa74c21695248b26279792cd7d07d94fd97f181020f318f024a",
+                "sha256:872f0218a29d199e92730f415f7ecf02d156a7a6b70a739bd1ff249ac2ef1fb5",
+                "sha256:9c6e60430b748e4caa85dd215dcb6757f16766a5604e6d7b20661c10393516b4",
+                "sha256:b4ad7e29efeeb13159d43151bcd08e180775708aeab1feaac8d810e89d187946",
+                "sha256:c935db807eb6e94ecbbe5c43ee3f416bc6e13ba5d522388db422e50ce2294dad",
+                "sha256:ef3e6737d9910c13275fe319436541cfc50683f4fa31660adfbd5ce4dac40773",
+                "sha256:f2abd70eccb9a8fec2503fd00dff4ce439da4611bd0ccf0009a5855fbe06c70d"
             ],
-            "version": "==7.1.1"
+            "version": "==7.2.0"
         },
         "tqdm": {
             "hashes": [
