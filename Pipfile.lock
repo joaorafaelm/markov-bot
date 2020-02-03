@@ -436,18 +436,20 @@
         },
         "spacy": {
             "hashes": [
-                "sha256:33b9aacddad185d4b5cd2fddbe57375f93a88741e06992670f342a002685fb50",
-                "sha256:4a1b47a1af437f43987384cd6d8061f5b3e8985f0f2b323f9644ba8e733e79a4",
-                "sha256:6311a3040cd40d890307ef316ce193422b074d1eda20f2c9a5e04cef58f494c6",
-                "sha256:643200afff7bdb1631d58eb36d00c8f493bf038ed8ab59fb30ddf7fd3aea36b5",
-                "sha256:72419014d91be4e3407e1610a13909d91fd0b989638b1343863318f294dba226",
-                "sha256:87e2690274086a4d128c17077d2c887c5bb225490f429204858ea5a19121aebf",
-                "sha256:926a7f48011d920e347fa02174421cecffc4d35e68d310e2a8e60fa2732fef9b",
-                "sha256:936e1a9adc52d3de07efb1af638c9d19993a4873f0d03038b04f38bf35dc08d0",
-                "sha256:a10625ac4d05d94034a0e68c9147a385eb9742ff703e7578f928175ba5e6a470",
-                "sha256:a9d7a482fb75ad923fc59a7bb9d0148f571b778880e157f1f399a7fb4073eb5b"
+                "sha256:1d14c9e7d65b2cecd56c566d9ffac8adbcb9ce2cff2274cbfdcf5468cd940e6a",
+                "sha256:2cb77315522cc422df7750dac778f13d8079f409b4842cf74a54ffe3b84ee5c6",
+                "sha256:3c83c061597b5dc94c939c511d3b72c2971257204f21976afc117a350e8fa92b",
+                "sha256:6971359e43841ff9ed87e1af5e87ea74d6fdb01fe54807d3e4c6a2a3798d18a4",
+                "sha256:708d25c7212bd20d1268c6559e191d221e88e68e152fb98b82c388d16dfdd3d7",
+                "sha256:713811c96396c6bb86a1da2bbbe02d874385e74dde6617a84d61d99e9d2b1105",
+                "sha256:7fa02ababbb3762277b81873204d78583008b408ddf6fc0ef977b38d3b462b85",
+                "sha256:8d1ce99fc30d634b63b15d98c49b96d6a40b0d2048d5dad0f2bb31d3f6dc5ef0",
+                "sha256:9afdec1aeb21dbeccfd4d702f12fe8bab88e4d7cd410785bf17f6b186cbc73e8",
+                "sha256:ce7fad73de7aed7ca2ee7c2404c77c72005f67ca95edae6f19f08947fb0f8ab3",
+                "sha256:d6a2804c457ce74f0d3bf1f4cdb00cbcd228e9da5f0bdbbbe0a856afe12db37e",
+                "sha256:d8791f5f69800d702b8e9457418af2cd29789b82697d17ad66df98922f081d1b"
             ],
-            "version": "==2.2.2"
+            "version": "==2.2.3"
         },
         "spacy-cld": {
             "hashes": [
