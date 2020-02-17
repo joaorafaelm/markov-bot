@@ -525,10 +525,10 @@
         },
         "wasabi": {
             "hashes": [
-                "sha256:7a369627eba52f59ff3452270ba4a64a940200b617cda1bbafffd145e38a9add",
-                "sha256:dcd60890dd4a4c171ad5e3ee11ccbd072dc6978b966c903adaa874e0f29b5270"
+                "sha256:b8dd3e963cd693fde1eb6bfbecf51790171aa3534fa299faf35cf269f2fd6063",
+                "sha256:da1f100e0025fe1e50fd67fa5b0b05df902187d5c65c86dc110974ab856d1f05"
             ],
-            "version": "==0.4.0"
+            "version": "==0.6.0"
         },
         "wcwidth": {
             "hashes": [
