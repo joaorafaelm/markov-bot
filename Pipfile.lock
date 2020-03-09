@@ -473,20 +473,18 @@
         },
         "srsly": {
             "hashes": [
-                "sha256:1102b4984f9f56364540e47d83fac3e7543903dfbb92f0d0e5dd3bfd40528934",
-                "sha256:1c4354095f63f59fc52a4362960faaddebcfa7a240f07209eb50e8f9ec39e700",
-                "sha256:3ceae42dbbda49b57a4937e0ca28f56c2a121c89008cc7ec09e0a9d8d705c03e",
-                "sha256:4ce9d6ab6d1c617150455ef5ba8abd5107a8e65956f06c2efc86697f4cb4b431",
-                "sha256:51c47f98dc06d5c2d1d7806cd38dcc834ab9906dc12170bc21105e5a9590a6fd",
-                "sha256:a672ffaa77680f355933cf424739ae9ecff767908a374ad194692b53040fda01",
-                "sha256:abe3d98d9ea8f7dac898119cd9861466c49cfe0f16287c9f859e0d4cab43a7a4",
-                "sha256:c6bdf53a87770139c6a9d75b3e664505bd81c022312fafca35ed38714e4ecdf1",
-                "sha256:c82e6dc3727454edc6ccdb1d07d5bc0aab3f43539fb8d9f973cf769135d2c7e4",
-                "sha256:ca1ec20ea6e14ad56ccaa84aa6c79d6e51fccf32e0040372b4d06c6e5dbb7fee",
-                "sha256:d5c0c718b2f67fc425d9bb3cc26b6141cb2f53251cdc145f58b70095241a3308",
-                "sha256:de329ba0ff451308d59e40c39372f5231e7c364f4933d7457788203630bdede2"
+                "sha256:6a75ef36d28232666dd252488817fff056cfe3a0c5bd223f360e76428f8beddb",
+                "sha256:776bdd058003079151d90e1dc23a70db6d0fced58f9d5332315f3857d092b033",
+                "sha256:82dabdbf3057b266402edaefb9bee3b8779da618857b0c3df04381734755a608",
+                "sha256:ad8847d4836912ad659cda6d2f5adcae01a472acbc57bd4875934dbd21684c2c",
+                "sha256:c6fc930043dc6e7212974cfb5eee35c17854e840a8deb2b42b22397ab8cb6c65",
+                "sha256:ddcb3f920b6d53d6d99d7eabf5ef103a837603f0a8d099751e5087de37e85229",
+                "sha256:e485fefa466e79ed17bcf47e3a0d061b295727a7dd91d5e97e09bb978f76c43d",
+                "sha256:edf879fa7ff5c200951d325168aff1125021b045a5707bc06bfd5e1996d74d40",
+                "sha256:eea9a7906a646436a1e170e900199b778a0914848635c06aec6ffdd79c507f3c",
+                "sha256:fa3c7375be8fe75f23c27feafbfb5f738d55ffdbf02964c6896fb7684f519a52"
             ],
-            "version": "==1.0.1"
+            "version": "==2.0.1"
         },
         "thinc": {
             "hashes": [
