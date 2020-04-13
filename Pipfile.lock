@@ -148,10 +148,10 @@
         },
         "dataset": {
             "hashes": [
-                "sha256:aaf634a4625d45a4a9ae59a581748f12ea58603ad73a2016a09c7dc68d0908ce",
-                "sha256:c6a401326ecab955c1d70400cfc4e713a339a14f0f4995b3bfa98b88b2a1d4ce"
+                "sha256:87400974f2f67a97c19055240e5709e888d9c74b9bea41adff3ea304ad266374",
+                "sha256:f656a3405ef5bd950fd0ee0ac484f8678d0560694a03d7c3a824de9a9f223a37"
             ],
-            "version": "==1.3.0"
+            "version": "==1.3.1"
         },
         "idna": {
             "hashes": [
