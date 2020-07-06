@@ -491,9 +491,9 @@
         },
         "sqlalchemy-utils": {
             "hashes": [
-                "sha256:7a7fab14bed80df065412bbf71a0a9b0bfeb4b7c111c2d9bffe57283082f3a6b"
+                "sha256:be319a16022b6a01e1d6c838340485beb4d34fd9c1c19d2303356804fa0faa09"
             ],
-            "version": "==0.36.6"
+            "version": "==0.36.7"
         },
         "srsly": {
             "hashes": [
