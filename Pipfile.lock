@@ -497,18 +497,18 @@
         },
         "srsly": {
             "hashes": [
-                "sha256:6a75ef36d28232666dd252488817fff056cfe3a0c5bd223f360e76428f8beddb",
-                "sha256:776bdd058003079151d90e1dc23a70db6d0fced58f9d5332315f3857d092b033",
-                "sha256:82dabdbf3057b266402edaefb9bee3b8779da618857b0c3df04381734755a608",
-                "sha256:ad8847d4836912ad659cda6d2f5adcae01a472acbc57bd4875934dbd21684c2c",
-                "sha256:c6fc930043dc6e7212974cfb5eee35c17854e840a8deb2b42b22397ab8cb6c65",
-                "sha256:ddcb3f920b6d53d6d99d7eabf5ef103a837603f0a8d099751e5087de37e85229",
-                "sha256:e485fefa466e79ed17bcf47e3a0d061b295727a7dd91d5e97e09bb978f76c43d",
-                "sha256:edf879fa7ff5c200951d325168aff1125021b045a5707bc06bfd5e1996d74d40",
-                "sha256:eea9a7906a646436a1e170e900199b778a0914848635c06aec6ffdd79c507f3c",
-                "sha256:fa3c7375be8fe75f23c27feafbfb5f738d55ffdbf02964c6896fb7684f519a52"
+                "sha256:08133e081fa89a6bc73869eabd59b20c4f502a1aae02c7892014f863fcaa6d90",
+                "sha256:0a824690e72b816156da44643591b854b9243fb7843601909ae42d3b47c07020",
+                "sha256:1401539289f30ffff7345d5276de1ce65627d6a86b4670072574c9416fd9ab29",
+                "sha256:1c166151c10dcbaff238e81b29736cffdcf210fd79df31d617f8a3a4e245a543",
+                "sha256:37fdec8f1fca02698d8512e4978f5dc5af742b658ae0696253eee28cc68f0cfe",
+                "sha256:428312bf223da711f19b69f5c09096546e35a4d45c50344fe704813d0aca4d91",
+                "sha256:9c282b93fd5fc69fdc0a596534659d7134504163744838603efbef847df4dfb4",
+                "sha256:a4a8196590e2623d668ae49349dd7d33f31f5ae56ba8c1a9f4587301f73744c0",
+                "sha256:cd851e7bb597ea9d999c1ff936ae912928220239bb33e745edd61e084be3906f",
+                "sha256:de2da5bba4549e6b181d4a665952fb84a8c2022bbcd5b7e00b72eb2aba5a79ff"
             ],
-            "version": "==2.0.1"
+            "version": "==2.2.0"
         },
         "thinc": {
             "hashes": [
