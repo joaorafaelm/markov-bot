@@ -182,10 +182,9 @@
         },
         "markovify": {
             "hashes": [
-                "sha256:b5c073ed9a0c61e06a5084bf35b657977fac856da8a72bb491a4da992bd9cecd"
+                "sha256:254405c5b2f819ae388c39a53e6bc038bfbc24713441869ce90a1cd67e4a89ce"
             ],
-            "index": "pypi",
-            "version": "==0.8.2"
+            "version": "==0.8.3"
         },
         "markupsafe": {
             "hashes": [
