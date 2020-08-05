@@ -17,6 +17,7 @@ spacy-cld = "*"
 attrdict = "*"
 alembic = "*"
 sqlalchemy-utils = "*"
+iniconfig = "*"
 
 [dev-packages]
 ipdb = "*"
