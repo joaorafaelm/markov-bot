@@ -314,10 +314,10 @@
         },
         "plac": {
             "hashes": [
-                "sha256:463fdac969afbc18ef0ba196305797a0887eb949983e96f616215f11b7255bf3",
-                "sha256:ca03587234e5bdd2a3fa96f19a04a01ebb5b0cd66d48ecb5a54d42bc9b287320"
+                "sha256:6b75ac132af671b04921774d036f7c7d130ea5ca10d1abff262bc199ae1151ba",
+                "sha256:9ebe589ae371c0f863848cebffbfa1394e814a9b8b5a5a42ea373572d29d856d"
             ],
-            "version": "==1.2.0"
+            "version": "==1.3.1"
         },
         "pluggy": {
             "hashes": [
