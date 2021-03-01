@@ -305,10 +305,10 @@
         },
         "plac": {
             "hashes": [
-                "sha256:463fdac969afbc18ef0ba196305797a0887eb949983e96f616215f11b7255bf3",
-                "sha256:ca03587234e5bdd2a3fa96f19a04a01ebb5b0cd66d48ecb5a54d42bc9b287320"
+                "sha256:7033414d97e5fd80e16581c65f1bd11d6f2a5170e3771452bb3b476f06c7cf65",
+                "sha256:d598bc4b549282ec3a1fde40ddc4a273e051237b5aa70c44f572306a13c651e8"
             ],
-            "version": "==1.2.0"
+            "version": "==1.3.2"
         },
         "pluggy": {
             "hashes": [
