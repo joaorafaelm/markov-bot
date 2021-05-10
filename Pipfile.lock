@@ -39,18 +39,21 @@
         },
         "blis": {
             "hashes": [
-                "sha256:014771a0f753a64ef5610c5b3d4a090b263073bdd59b8ad0d872ce1e06e7315a",
-                "sha256:2c89ecaef64158f46bf011d7bb782f8fcff10be366f610567162c91597b33045",
-                "sha256:3217da6da2278a3287361af9a01a5e3d8fcb387d5d54f9731aa85c190cf8364c",
-                "sha256:53a59182fe732c672049bb22cbfa0e78d8a699674542c9216c12b6254322744f",
-                "sha256:6cb16f8bcfaf480e47678c881aa3198759d234668e0794634fbb6e177a3db0ef",
-                "sha256:b56af055ddc34d9ed934ac6486197c40db49d90cc2dc9545d5fc4ddebe62deca",
-                "sha256:bd154619bd6db57703de62c91cf269bd158fffb4d143c012f8f32e152c1d1e22",
-                "sha256:c77fd15082c1b0855ab5afc03fa6efcd52b66113de2193baf67cdf7116904c16",
-                "sha256:cd5a92a9538fb2656c016aa3ca033cdc03039e2f6142b71c0fee70882fa50fbf",
-                "sha256:d60b8a0de9d6593246e7bbcdd2195be7019e692845556da48a6498b11254b68f"
+                "sha256:168fd7bd763ebe529aa25a066d3a6b89f4c3f492f6297f881df6942741b95787",
+                "sha256:4222bbc7b9c47bc3cf6f36f2241862c1512ca7ebac3828267a2e05ef6c47fc54",
+                "sha256:445e4838b809e99677f5c0982fb9af320f0d91328fb28c8097e5f1173c4df9d6",
+                "sha256:5b403deb2ad5515e1edb3c0867bccb5b974b461f24283d9219a3a761fd6dacc6",
+                "sha256:5c1a2023f7d8431daa8d87d32f539bb23e1a009500c37f9eba0ac7b3f20f73eb",
+                "sha256:5ecddc4c6daf80558154b091db0a9839bb15dbe65d2906a543a73b93fbce4f73",
+                "sha256:6814991b3e3193db4f9b2417174c6f24b9c0197409d864fa7628583bd2df1f0f",
+                "sha256:78a8e0ee72a42c3b2f5b9114500a781119995f76fa6c21d4b02c6fb9c21df2cc",
+                "sha256:7daa615a97d4f28db0f332b710bfe1900b15d0c25841c6d727965e4fd91e09cf",
+                "sha256:94890b2296f1449baa56aede46627ea7fc8de11c788f9c261ee38c2eb4a2cc7d",
+                "sha256:9f9b829480c12fc834549306821e5c51cb28b216ca5f88c5b2cfedbeb9daf67d",
+                "sha256:c2d8064217c326dd9a0dcbae294ffe8557263e2a00d76101ffa222b9c9d9c62d",
+                "sha256:d717b5dea407aac89a646908e7d9849105abab9c88a539c120518c200f899f4e"
             ],
-            "version": "==0.7.1"
+            "version": "==0.7.4"
         },
         "cachetools": {
             "hashes": [
