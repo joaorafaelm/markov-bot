@@ -644,9 +644,9 @@
         },
         "ipdb": {
             "hashes": [
-                "sha256:c85398b5fb82f82399fc38c44fe3532c0dde1754abee727d8f5cfcc74547b334"
+                "sha256:8d368fa048a93ad6c1985d7f1d78d68580c879e4053fc15714bdcf2a1b042d06"
             ],
-            "version": "==0.13.4"
+            "version": "==0.13.8"
         },
         "ipython": {
             "hashes": [
