@@ -521,10 +521,10 @@
         },
         "sqlalchemy-utils": {
             "hashes": [
-                "sha256:fb66e9956e41340011b70b80f898fde6064ec1817af77199ee21ace71d7d6ab0"
+                "sha256:5b774ab2d2196ca46e1c75a8c4fd5b0093c47dcfff3f6d7bbb821d3ccacfeb4f",
+                "sha256:62a504b61d17837cb7846f4fb7c9319754685e232d2b8b4cdd4cf792dd48e78f"
             ],
-            "index": "pypi",
-            "version": "==0.36.8"
+            "version": "==0.37.5"
         },
         "srsly": {
             "hashes": [
