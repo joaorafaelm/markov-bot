@@ -462,19 +462,21 @@
         },
         "spacy": {
             "hashes": [
-                "sha256:0f5d088c1d2a1fcf247090854927cd0ba4e28266323af112dead20ff020ded1c",
-                "sha256:11b9517cdcbea166a9461093821d12bf632aea7dd14b6e3c549871903bda41b8",
-                "sha256:1fcfb911b254af3144b3e65a2daf671cb26b6243ec431089ccb28cbe03d826de",
-                "sha256:366eaae9634c59f89015ad11db1d8559c327ab665a5f644c71155c76711ee50a",
-                "sha256:3bafcc134c340c5d7556612344d2844522d452b99a21f2b0a9b640f6c55f1110",
-                "sha256:4944a1118f6dbb49201749d72527b749f74032e1026ddf387bc3a7e172ff0300",
-                "sha256:7a6b7486f71930e7de7100feb72036e3ccb8c18509ff23e8453cff0b28470ea4",
-                "sha256:818de26e0e383f64ccbe3db185574920de05923d8deac8bbb12113b9e33cee1f",
-                "sha256:b7df3622e9a867294b913cd0a4fba99d47162af1cfd3a840c5943b25f390bb5c",
-                "sha256:f7b3a17730786979f964b16ee1e4a9146cd05016f100afb274dd66336dfc39eb"
+                "sha256:12eaf0e325b9730bcfeaefd30fed243408ea96a8caa2db2c0397a604ff2f72d6",
+                "sha256:13a8c02e27080c191c27865f5b520a32546f849c66949a1d041747e5a62fec1a",
+                "sha256:17c349f533af62483d27c2a1693a397b8f58140bc8514eb4239fdfec7db10e31",
+                "sha256:2b7fa7be0f4d0fe39651848d97f4194f6e2b439633e63fcb3dacaea0750bb768",
+                "sha256:2cecb7ce29445d2c0f9b6bf050b28d112d5e916fc8fd8053eef29e0f31d442b6",
+                "sha256:66bf003f943684dd9bbec376646a15355d5602ae7a8d10223a88974a357a3f11",
+                "sha256:6d53d440cc2fba8f42c1a300c52679b033488f3cbdf6dd93aa8330801a372a6e",
+                "sha256:6f2066a08189119abf38842cf8f6230afe482c2a971977f4fb9cf8ffc0ce13e6",
+                "sha256:9d9439b6e69fc2d14ac67cae2f8d651d7de7112c081674dd13b94986219817c2",
+                "sha256:c9a73479fc1303a6585712e9685ece15b4c03b1005bf768b0f8aa4abb327bfb9",
+                "sha256:da13c8a2144a47288f50f018df94e7077517ebab901e60afb5e6c3fffe26cadc",
+                "sha256:db9dff62262be1b884b5021dc152e21fcf7e0d9fab6afa2501b0e5f8498c1eec",
+                "sha256:e3705da42f99e63f02cee244364ad3ad4ace3fac5cf1151b72592755f8ffe3cc"
             ],
-            "index": "pypi",
-            "version": "==2.3.2"
+            "version": "==3.1.0"
         },
         "spacy-cld": {
             "hashes": [
