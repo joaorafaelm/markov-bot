@@ -65,10 +65,10 @@
         },
         "catalogue": {
             "hashes": [
-                "sha256:0d01077dbfca7aa53f3ef4adecccce636bce4f82e5b52237703ab2f56478e56e",
-                "sha256:8919341b5ed6ac922f4512925e4eadf36b7ece22f94d56691de658ec0dc61e52"
+                "sha256:6ce41a082512c6e42916a2f31d1d9df72e506f35f84e045800bfe93d4fcbb22d",
+                "sha256:fdc6ce61590d5002c9aa4c7eb15e9a17a64adc51654151a197c658619e5b6857"
             ],
-            "version": "==2.0.1"
+            "version": "==2.0.5"
         },
         "certifi": {
             "hashes": [
