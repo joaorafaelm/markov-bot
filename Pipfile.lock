@@ -410,9 +410,9 @@
         },
         "pytelegrambotapi": {
             "hashes": [
-                "sha256:ce42d84442ff2ce4918de6550cf377253f61e28e4fac2634495683d12df66d00"
+                "sha256:cc8011ca05301653f2e5c2d02eadff0e882b611841a76f9e5b911994899df49e"
             ],
-            "version": "==3.7.3"
+            "version": "==4.1.1"
         },
         "pytest": {
             "hashes": [
