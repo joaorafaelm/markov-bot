@@ -583,20 +583,21 @@
         },
         "thinc": {
             "hashes": [
-                "sha256:0139fa84dc9b8d88af15e648fc4ae13d899b8b5e49cb26a8f4a0604ee9ad8a9e",
-                "sha256:061633bf334e3728173d59d6001e8cdef3839166c71e23b3c5f74f5fae3c0d7c",
-                "sha256:0df8c5762359a3a4d8d494aa2eff11c4936c4f34559fe1b3ab1d13d24c76b509",
-                "sha256:33db4a9182c78c8f4823b1765274bbb0caa8f4269dbd102f2e6ab2f7f91a6084",
-                "sha256:36237f711f0b3da932bd28cc366a92f6f1b6d1f95ad6cbbc8166b94785b38e40",
-                "sha256:387d25e57e53eed86d24f2657ab9555703043de27211764835a38e2e31b3c8e9",
-                "sha256:55b9e02e4b8395cee0a8a810bd8af4d7600b04520bab60df1fc513d50a41eec5",
-                "sha256:5d633cc5c210a02ba706ed7e800f4dc906ba1e10b85e3ed40d77fdb7e7674a20",
-                "sha256:947806f4cbbcaf8dd046942acd5e52d55ac805303985a2e36de4734be5496bf1",
-                "sha256:d3ff8cfbf583ac788a85f5e0e3cf00edf2f6bc5ba2b2ca264771870c07cb5717",
-                "sha256:d70e71b0561bbf844bc9f737f60150b0f8f04dfd603151869d93a5735deb6219",
-                "sha256:e2ebeeafd79bb86697388fccc5996d6ea1e69106e2a7fc3a1092d626b522cc01"
+                "sha256:048506bc49a61b83f092e6221808ced23ae1c12d80c4ef33395df215a9e3e472",
+                "sha256:0a06bf5dbede8885ab5a52ee5923880540214b7efa5792359db74a2321625d7c",
+                "sha256:0a5232bf0323d3c3f1cec6ddcab1f6936102c4ba1a347737363ffbad3af2d67a",
+                "sha256:0a7bcd2ef2ad59a8a73645ad9b8796e0ea0626ace5772ec3d312713a7ec59e2e",
+                "sha256:20f8f30f644fb7ec8d4af41654ef0e0b39b21ad19ff684283c1982c2a89dde41",
+                "sha256:3510fcf92bb1f73edca9a7f5236c63d5441d78b0e51a71517e303955d762157e",
+                "sha256:586b9199e6ca456b3c43bee7f655ec3b50cd25c38a8bb3fdc9b2e7cba5859a9d",
+                "sha256:816a7833f0c4b70a25462b944802e55a16d5617058688ab3cae4fa28b5066432",
+                "sha256:95e766804d9228b90a58659fdb5610d0bc3eb66c28142dea69ac844c6953906a",
+                "sha256:9f2cddb8699b74a40f0ea74d079efe24900ac36c6da6c33021004583b5d66109",
+                "sha256:d46d654c9b1c1975227742a99f9a8f930b9bb01c3f691bbb889b8dca61e060a6",
+                "sha256:d7b3b243be5b64a96f494f014136442afb51e6f0b543de42c928e5e58d534c22",
+                "sha256:f4474268b99447501f95a4c4fbcdc61d77c2cd905cda17206cae13b1b50a15c5"
             ],
-            "version": "==7.4.1"
+            "version": "==8.0.11"
         },
         "toml": {
             "hashes": [
