@@ -758,10 +758,10 @@
         },
         "prompt-toolkit": {
             "hashes": [
-                "sha256:25c95d2ac813909f813c93fde734b6e44406d1477a9faef7c915ff37d39c0a8c",
-                "sha256:7debb9a521e0b1ee7d2fe96ee4bd60ef03c6492784de0547337ca4433e46aa63"
+                "sha256:27f13ff4e4850fe8f860b77414c7880f67c6158076a7b099062cc8570f1562e5",
+                "sha256:62b3d3ea5a3ccee94dc1aac018279cf64866a76837156ebe159b981c42dd20a8"
             ],
-            "version": "==3.0.8"
+            "version": "==3.0.21"
         },
         "ptyprocess": {
             "hashes": [
