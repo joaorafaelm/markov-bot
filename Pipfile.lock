@@ -172,11 +172,10 @@
         },
         "dataset": {
             "hashes": [
-                "sha256:41e55410f853815753740a84f7dc51b5740266c8bf0d88c7f64d0a83b21d1ae4",
-                "sha256:6be387eefcd5a98fe1a68b1403390648c71f2edc5cb271f0e1f1a44ca83409eb"
+                "sha256:0c3e3226b1bbd79d6499892d78af0242d9dff114fd1174a0826243db8adeef60",
+                "sha256:bd51e889b0342411d187e07c9a64153c5b398c7a92cc4fbb449f83e858855d04"
             ],
-            "index": "pypi",
-            "version": "==1.3.2"
+            "version": "==1.5.0"
         },
         "idna": {
             "hashes": [
