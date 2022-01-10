@@ -18,10 +18,10 @@
     "default": {
         "alembic": {
             "hashes": [
-                "sha256:4e02ed2aa796bd179965041afa092c55b51fb077de19d61835673cc80672c01c",
-                "sha256:5334f32314fb2a56d86b4c4dd1ae34b08c03cae4cb888bc699942104d66bc245"
+                "sha256:7c328694a2e68f03ee971e63c3bd885846470373a5b532cf2c9f1601c413b153",
+                "sha256:a9dde941534e3d7573d9644e8ea62a2953541e27bc1793e166f60b777ae098b4"
             ],
-            "version": "==1.4.3"
+            "version": "==1.7.5"
         },
         "attrdict": {
             "hashes": [
