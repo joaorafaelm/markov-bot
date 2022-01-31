@@ -786,10 +786,10 @@
         },
         "prompt-toolkit": {
             "hashes": [
-                "sha256:25c95d2ac813909f813c93fde734b6e44406d1477a9faef7c915ff37d39c0a8c",
-                "sha256:7debb9a521e0b1ee7d2fe96ee4bd60ef03c6492784de0547337ca4433e46aa63"
+                "sha256:4bcf119be2200c17ed0d518872ef922f1de336eb6d1ddbd1e089ceb6447d97c6",
+                "sha256:a51d41a6a45fd9def54365bca8f0402c8f182f2b6f7e29c74d55faeb9fb38ac4"
             ],
-            "version": "==3.0.8"
+            "version": "==3.0.26"
         },
         "ptyprocess": {
             "hashes": [
