@@ -600,10 +600,10 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:43ca183da3367578ebf2f1c2e3111d51ea161ed1dc4e6345b86e27c2a93beff7",
-                "sha256:69dfa6714dee976e2425a9aab84b622675b7b1742873041e3db8a8e86132a4af"
+                "sha256:1d9835ede8e394bb8c9dcbffbca02d717217113adc679236873eeaac5bc0b3cd",
+                "sha256:e643e071046f17139dea55b880dc9b33822ce21613b4a4f5ea57f202833dbc29"
             ],
-            "version": "==4.50.2"
+            "version": "==4.63.0"
         },
         "unidecode": {
             "hashes": [
