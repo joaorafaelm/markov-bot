@@ -725,10 +725,10 @@
         },
         "parso": {
             "hashes": [
-                "sha256:2b6db14759c528d857eeb9eac559c2166b2554548af39f5198bdfb976f72aa64",
-                "sha256:dc6c57ae210fc89b1de8fb0e7dc273fd6e40ebbe23c79b6e3c2b7dcbeb38c513"
+                "sha256:8c07be290bb59f03588915921e29e8a50002acaf2cdc5fa0e0114f91709fafa0",
+                "sha256:c001d4636cd3aecdaf33cbb40aebb59b094be2a74c556778ef5576c175e19e75"
             ],
-            "version": "==0.8.0"
+            "version": "==0.8.3"
         },
         "pexpect": {
             "hashes": [
