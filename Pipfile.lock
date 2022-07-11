@@ -89,11 +89,8 @@
             "version": "==2.1.1"
         },
         "more-itertools": {
-            "hashes": [
-                "sha256:6f83822ae94818eae2612063a5101a7311e68ae8002005b5e05f03fd74a86a20",
-                "sha256:9b30f12df9393f0d28af9210ff8efe48d10c94f73e5daf886f10c4b0b0b4f03c"
-            ],
-            "version": "==8.5.0"
+            "hashes": [],
+            "version": "==8.13.0"
         },
         "murmurhash": {
             "hashes": [
@@ -517,11 +514,8 @@
             "version": "==0.6.1"
         },
         "more-itertools": {
-            "hashes": [
-                "sha256:6f83822ae94818eae2612063a5101a7311e68ae8002005b5e05f03fd74a86a20",
-                "sha256:9b30f12df9393f0d28af9210ff8efe48d10c94f73e5daf886f10c4b0b0b4f03c"
-            ],
-            "version": "==8.5.0"
+            "hashes": [],
+            "version": "==8.13.0"
         },
         "packaging": {
             "hashes": [
