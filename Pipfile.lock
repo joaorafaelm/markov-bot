@@ -41,11 +41,8 @@
             "version": "==5.2.0"
         },
         "catalogue": {
-            "hashes": [
-                "sha256:0d01077dbfca7aa53f3ef4adecccce636bce4f82e5b52237703ab2f56478e56e",
-                "sha256:8919341b5ed6ac922f4512925e4eadf36b7ece22f94d56691de658ec0dc61e52"
-            ],
-            "version": "==2.0.1"
+            "hashes": [],
+            "version": "==2.1.0"
         },
         "certifi": {
             "hashes": [
