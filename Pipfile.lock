@@ -200,11 +200,8 @@
             "version": "==8.1.0"
         },
         "toml": {
-            "hashes": [
-                "sha256:926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f",
-                "sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88"
-            ],
-            "version": "==0.10.1"
+            "hashes": [],
+            "version": "==0.10.2"
         },
         "tqdm": {
             "hashes": [
@@ -397,11 +394,8 @@
             "version": "==1.16.0"
         },
         "toml": {
-            "hashes": [
-                "sha256:926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f",
-                "sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88"
-            ],
-            "version": "==0.10.1"
+            "hashes": [],
+            "version": "==0.10.2"
         },
         "traitlets": {
             "hashes": [
