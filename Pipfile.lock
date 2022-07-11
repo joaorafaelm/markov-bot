@@ -280,11 +280,8 @@
             "version": "==21.3"
         },
         "parso": {
-            "hashes": [
-                "sha256:2b6db14759c528d857eeb9eac559c2166b2554548af39f5198bdfb976f72aa64",
-                "sha256:dc6c57ae210fc89b1de8fb0e7dc273fd6e40ebbe23c79b6e3c2b7dcbeb38c513"
-            ],
-            "version": "==0.8.0"
+            "hashes": [],
+            "version": "==0.8.3"
         },
         "pexpect": {
             "hashes": [
