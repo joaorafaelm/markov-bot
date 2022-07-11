@@ -143,11 +143,8 @@
             "version": "==7.1.2"
         },
         "pytest-cov": {
-            "hashes": [
-                "sha256:45ec2d5182f89a81fc3eb29e3d1ed3113b9e9a873bcddb2a71faaab066110191",
-                "sha256:47bd0ce14056fdd79f93e1713f88fad7bdcc583dcd7783da86ef2f085a0bb88e"
-            ],
-            "version": "==2.10.1"
+            "hashes": [],
+            "version": "==3.0.0"
         },
         "python-dateutil": {
             "hashes": [
