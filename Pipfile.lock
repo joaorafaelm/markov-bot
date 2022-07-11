@@ -192,19 +192,8 @@
             "version": "==0.38.3"
         },
         "srsly": {
-            "hashes": [
-                "sha256:0ed9c9e93e24f20e9af5628507ac6f3f9d8a550fd13b2ecbf9122d1b88576d9b",
-                "sha256:32d0b4fb1bee59fb54a59d9a5212b83b50363b943455860afe7f6dde1cc2737b",
-                "sha256:4664bbb625b6dfe3654b6d924b066dd400914448e1a8d3fc1a7f379f4fe674f2",
-                "sha256:78f85bba6f51559f498e44f1d2e7ea6b9188fcfb02534358a482edd00cd9d57f",
-                "sha256:a784d1b6c011bb04b561dc064a2b120cf7b4768db816fe72568c280a2bba3762",
-                "sha256:aec2d95022b5a9bfae5b6c5063a31966c4599bbb9213b83ee801d072a873499b",
-                "sha256:bc012c8f4594fff772a250d8263f15f105f7c1e4a042b6e3b2a3252d6f3cca45",
-                "sha256:ceaa238091a0753c43546fa1ab9c42bd0d589d021db21a38aa554b9cc9fd4a99",
-                "sha256:dc12db6bff42cfb4572d99cf42fd2ea0cd995e5df4b2eef3770428e8d0830ce5",
-                "sha256:f994a266f6e547c8ffe803cb90baed7ca566831f924e0491402564ba0d185e66"
-            ],
-            "version": "==2.3.0"
+            "hashes": [],
+            "version": "==2.4.3"
         },
         "thinc": {
             "hashes": [
