@@ -307,11 +307,8 @@
             "version": "==3.0.30"
         },
         "ptyprocess": {
-            "hashes": [
-                "sha256:923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0",
-                "sha256:d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f"
-            ],
-            "version": "==0.6.0"
+            "hashes": [],
+            "version": "==0.7.0"
         },
         "py": {
             "hashes": [],
