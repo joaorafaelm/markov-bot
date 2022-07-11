@@ -33,19 +33,8 @@
             "version": "==21.4.0"
         },
         "blis": {
-            "hashes": [
-                "sha256:014771a0f753a64ef5610c5b3d4a090b263073bdd59b8ad0d872ce1e06e7315a",
-                "sha256:2c89ecaef64158f46bf011d7bb782f8fcff10be366f610567162c91597b33045",
-                "sha256:3217da6da2278a3287361af9a01a5e3d8fcb387d5d54f9731aa85c190cf8364c",
-                "sha256:53a59182fe732c672049bb22cbfa0e78d8a699674542c9216c12b6254322744f",
-                "sha256:6cb16f8bcfaf480e47678c881aa3198759d234668e0794634fbb6e177a3db0ef",
-                "sha256:b56af055ddc34d9ed934ac6486197c40db49d90cc2dc9545d5fc4ddebe62deca",
-                "sha256:bd154619bd6db57703de62c91cf269bd158fffb4d143c012f8f32e152c1d1e22",
-                "sha256:c77fd15082c1b0855ab5afc03fa6efcd52b66113de2193baf67cdf7116904c16",
-                "sha256:cd5a92a9538fb2656c016aa3ca033cdc03039e2f6142b71c0fee70882fa50fbf",
-                "sha256:d60b8a0de9d6593246e7bbcdd2195be7019e692845556da48a6498b11254b68f"
-            ],
-            "version": "==0.7.1"
+            "hashes": [],
+            "version": "==0.9.0"
         },
         "cachetools": {
             "hashes": [
