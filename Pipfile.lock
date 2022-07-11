@@ -139,11 +139,8 @@
             "version": "==4.6.0"
         },
         "pytest": {
-            "hashes": [
-                "sha256:7a8190790c17d79a11f847fba0b004ee9a8122582ebff4729a082c109e81a4c9",
-                "sha256:8f593023c1a0f916110285b6efd7f99db07d59546e3d8c36fc60e2ab05d3be92"
-            ],
-            "version": "==6.1.1"
+            "hashes": [],
+            "version": "==7.1.2"
         },
         "pytest-cov": {
             "hashes": [
@@ -478,11 +475,8 @@
             "version": "==3.0.9"
         },
         "pytest": {
-            "hashes": [
-                "sha256:7a8190790c17d79a11f847fba0b004ee9a8122582ebff4729a082c109e81a4c9",
-                "sha256:8f593023c1a0f916110285b6efd7f99db07d59546e3d8c36fc60e2ab05d3be92"
-            ],
-            "version": "==6.1.1"
+            "hashes": [],
+            "version": "==7.1.2"
         },
         "six": {
             "hashes": [
